@@ -1,0 +1,8 @@
+Rxvt.background: Black
+Rxvt.foreground: Grey
+Rxvt.scrollBar_right: true
+Rxvt.termName: rxvt
+Rxvt.transparent: true
+Rxvt.shading: 50
+Rxvt.depth: 32
+Clipman.geometry: 24x24+0+0

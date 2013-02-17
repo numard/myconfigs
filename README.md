@@ -1,4 +1,4 @@
 myconfigs
 =========
 
-Some useful configs i use
+Some configs i use...i find them useful, YMMV
