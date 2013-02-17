@@ -4,9 +4,13 @@ import XMonad.Layout.HintedGrid
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Config.Xfce
+import qualified Data.Map as M
  
+main = xmonad myConfig 
+
 -- The main function.
-main = xmonad =<< statusBar toggleStrutsKey myConfig
+-- main = xmonad =<< statusBar toggleStrutsKey myConfig
 
 -- Command to launch the bar.
 myBar = "xmobar"
@@ -14,21 +18,16 @@ myBar = "xmobar"
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
 
--- Key binding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
--- Main configuration, override the defaults to your liking.
-myConfig = defaultConfig { 
-    borderWidth = 2
-   -- , terminal = "urxvt"
-   , terminal = "xfce4-terminal"
---   , modMask = mod4Mask
-   , manageHook = manageHook defaultConfig
-      <+> composeAll myManagementHooks
-      <+> manageDocks
-   
-   
-   }
+myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
+    [
+     -- Key binding to toggle the gap for the bar.
+     ((modMask, xK_b), sendMessage ToggleStruts)
+    , ((modMask .|. shiftMask, xK_q), spawn "xfce4-session-logout")
+    -- , ((modMask , xK_s     ), spawn "xflock")   
+    ]
+ 
+
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
@@ -43,3 +42,15 @@ myManagementHooks = [
  -- , (className =? "Pidgin") --> doF (W.shift "7:Chat")
  -- , (className =? "Gimp-2.8") --> doF (W.shift "9:Pix")
   ]
+
+-- Main configuration, override the defaults to your liking.
+myConfig = xfceConfig { 
+    borderWidth = 2
+   -- , terminal = "urxvt"
+   , terminal = "xfce4-terminal"
+--   , modMask = mod4Mask
+   , manageHook = manageHook defaultConfig
+      <+> composeAll myManagementHooks
+      <+> manageDocks
+   
+   }
