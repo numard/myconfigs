@@ -12,16 +12,18 @@ import XMonad.Layout.Grid
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
-import XMonad.Config.Xfce
 import qualified Data.Map as M
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.FadeInactive
+import XMonad.Config.Xfce
 
 main = xmonad myConfig 
 
 -- Main configuration, override the defaults to your liking.
 myConfig = xfceConfig { 
-    borderWidth = 2
+    borderWidth = 5 
+   , focusedBorderColor = "#000000"
+   , normalBorderColor = "#000000"
    -- , terminal = "urxvt"
    , terminal = "xfce4-terminal"
 --   , modMask = mod4Mask
@@ -73,7 +75,7 @@ myManagementHooks = [
   ]
 
 -- Based on config layout
-layout = tiled ||| Mirror tiled ||| Full ||| GridRatio (4/4)
+layout = tiled ||| Mirror tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
