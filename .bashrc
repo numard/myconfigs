@@ -137,6 +137,8 @@ alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias vpn=' ( cd _1/vpn ; sudo openvpn client.conf --script-security 2)'
 alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; echo ; ssh-add -l'
+alias loaddisks='truecrypt -t --auto-mount=favorites'
+
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
