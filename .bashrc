@@ -224,6 +224,9 @@ clearapc() {
 	ssh ${1}.freelancer.com "curl http://localhost:8080/clear.php"
 }
 
+copykeys() {
+	ssh-copy-id -i ~/dev/gitosis-admin/keydir/${1}.pub ${2} 
+}
 
 # Guide to prompt:
 #  * set the title bar to show the current time (\t) & current working directory (\w): "\[\e]0;\t \w\a\]"
