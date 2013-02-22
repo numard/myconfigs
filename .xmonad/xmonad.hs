@@ -53,6 +53,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
    , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
    , ((modMask .|. shiftMask, xK_Left),  shiftPrevScreen)
    , ((modMask,               xK_z),     toggleWS)
+   -- Alt-Shift ` , ask X to fix its resolution (useful for when unplugging monitors..)
+   , ((modMask .|. shiftMask, xK_grave), spawn "/usr/bin/xrandr --auto")
     ]
 
 
