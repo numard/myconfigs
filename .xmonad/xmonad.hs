@@ -21,7 +21,7 @@ main = xmonad myConfig
 
 -- Main configuration, override the defaults to your liking.
 myConfig = xfceConfig { 
-    borderWidth = 5 
+    borderWidth = 4 
    , focusedBorderColor = "#000000"
    , normalBorderColor = "#000000"
    -- , terminal = "urxvt"
