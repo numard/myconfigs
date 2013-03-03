@@ -135,8 +135,8 @@ alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
-alias vpn=' ( cd _1/vpn ; sudo openvpn client.conf --script-security 2)'
-alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; echo ; ssh-add -l'
+alias vpn='(cd _1/vpn ; sudo openvpn --config client.conf --script-security 2)'
+alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/whitehats_sectest/whitehats_aws-20130225.pem ; echo ; ssh-add -l'
 alias loaddisks='truecrypt -t --auto-mount=favorites'
 
 # useful for git and others
@@ -226,6 +226,10 @@ clearapc() {
 
 copykeys() {
 	ssh-copy-id -i ~/dev/gitosis-admin/keydir/${1}.pub ${2} 
+}
+
+jump() {
+    ssh -t syd1.freelancer.com ssh $1
 }
 
 # Guide to prompt:
