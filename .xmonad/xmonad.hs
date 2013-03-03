@@ -4,6 +4,7 @@
 -- Fading inactive windows http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-FadeInactive.html
 -- Default XmonadConfig http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Config.html (or in this directory for convenience)
 -- Interesting overview http://thinkingeek.com/2011/11/21/simple-guide-configure-xmonad-dzen2-conky/
+-- EZConfig http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Util-EZConfig.html#v:removeKeys
 
 -- Imports.
 import XMonad
@@ -16,6 +17,7 @@ import qualified Data.Map as M
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.FadeInactive
 import XMonad.Config.Xfce
+-- import XMonad.Util.EZConfig
 
 main = xmonad myConfig 
 
@@ -40,7 +42,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      -- Key binding to toggle the gap for the bar.
      ((modMask, xK_b), sendMessage ToggleStruts)
     , ((modMask .|. shiftMask, xK_q), spawn "xfce4-session-logout")
-    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
+    -- instead of dmenu i'm using Synapse, also bound to ctrl-p
+    , ((modMask, xK_p), return ()) 
+--    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
     -- , ((modMask , xK_s     ), spawn "xflock")   
     , ((modMask .|. shiftMask, xK_Print), spawn "~/bin/screencap_selection.sh") 
    -- a basic CycleWS setup
