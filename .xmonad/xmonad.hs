@@ -23,11 +23,11 @@ main = xmonad myConfig
 
 -- Main configuration, override the defaults to your liking.
 myConfig = xfceConfig { 
-    borderWidth = 4 
+    borderWidth = 3 
    , focusedBorderColor = "#000000"
    , normalBorderColor = "#000000"
-   -- , terminal = "urxvt"
-   , terminal = "xfce4-terminal"
+   , terminal = "urxvt"
+   -- , terminal = "xfce4-terminal"
 --   , modMask = mod4Mask
    , manageHook = manageHook defaultConfig
       <+> composeAll myManagementHooks
@@ -42,11 +42,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      -- Key binding to toggle the gap for the bar.
      ((modMask, xK_b), sendMessage ToggleStruts)
     , ((modMask .|. shiftMask, xK_q), spawn "xfce4-session-logout")
-    -- instead of dmenu i'm using Synapse, also bound to ctrl-p
-    , ((modMask, xK_p), return ()) 
---    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
+    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
     -- , ((modMask , xK_s     ), spawn "xflock")   
-    , ((modMask .|. shiftMask, xK_Print), spawn "~/bin/screencap_selection.sh") 
+    , ((modMask, xK_Print), spawn "~/bin/screencap_selection.sh") 
    -- a basic CycleWS setup
    , ((modMask .|. controlMask, xK_Down),  nextWS)
    , ((modMask .|. controlMask, xK_Up),    prevWS)
