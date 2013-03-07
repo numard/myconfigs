@@ -1,8 +1,14 @@
+!
+! Do not foget to run xrdb .Xresources when done
+! 
 Rxvt.background: Black
+!URxvt.background: [95]#000000
 Rxvt.foreground: Grey
 Rxvt.scrollBar_right: true
 Rxvt.termName: rxvt
 Rxvt.transparent: true
-Rxvt.shading: 50
+! URxvt*.shading: 0 (opaque) to 99 darkens, 101 to 200 lightens
+Rxvt.shading: 33 
 Rxvt.depth: 32
+Rxvt.font: 9x15 
 Clipman.geometry: 24x24+0+0
