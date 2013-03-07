@@ -60,17 +60,15 @@ set undofile
 set autoindent
 set smartindent
 set smarttab
+set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set expandtab
 
 filetype plugin on
 filetype indent on
 
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
-
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
 
