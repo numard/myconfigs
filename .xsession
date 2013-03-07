@@ -5,9 +5,7 @@ xrdb ~/.Xresources
 #	pulseaudio --daemonize
 #fi
 
-#reload feh last settings
-eval $(cat ~/.fehbg)
-
+~/bin/change_bg.sh
 /usr/bin/stalonetray &
 
 xscreensaver -nosplash&
