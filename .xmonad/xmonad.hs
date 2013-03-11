@@ -64,12 +64,12 @@ myTerminal      = "urxvt"
 modMask' :: KeyMask
 modMask' = mod1Mask
 -- Define workspaces
-myWorkspaces    = ["1:web","2:dev","3:media","4:music","5:chat","6:vm", "7", "8", "9"]
+myWorkspaces    = ["1:web","2:dev","3:media","4","5:chat","6:vm", "7", "8", "9:music"]
 -- Dzen config
 -- myStatusBar = "dzen2 -h '24' -w '1240' -ta 'l' -fg '#FFFFFF' -bg '#161616' -fn '-*-bitstream vera sans-medium-r-normal-*-11-*-*-*-*-*-*-*'"
-myStatusBar = "dzen2 -h '24' -w '1240' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
+myStatusBar = "dzen2 -h '24' -w '1200' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
 -- myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '24' -y '768' -ta 'c' -bg '#161616' -fg '#FFFFFF' -fn '-*-bitstream vera sans-medium-r-normal-*-11-*-*-*-*-*-*-*'"
-myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '24' -y '768' -ta 'c' -bg '#161616' -fg '#FFFFFF' "
+myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '20' -y '748' -ta 'c' -bg '#161616' -fg '#FFFFFF' "
 myBitmapsDir = "/home/beto/.xmonad/dzen"
 --}}}
 -- Main {{{
@@ -108,7 +108,7 @@ manageHook' = (composeAll . concat $
     [ [resource     =? r            --> doIgnore            |   r   <- myIgnores] -- ignore desktop
     , [className    =? c            --> doShift  "1:web"   |   c   <- myWebs   ] -- move web to web
     , [className    =? c            --> doShift  "3:media"  |   c   <- myMovie   ] -- move movie to movie
-    , [className    =? c            --> doShift  "4:music"  |   c   <- myMusic   ] -- move music to music
+    , [className    =? c            --> doShift  "4"  |   c   <- myMusic   ] -- move music to music
     , [className    =? c            --> doShift  "5:chat"   |   c   <- myChat  ] -- move chat to chat
     , [className    =? c            --> doShift  "6:vm"   |   c   <- myVm  ] -- move vm to vm 
     , [className    =? c            --> doCenterFloat       |   c   <- myFloats ] -- float my floats
@@ -165,7 +165,7 @@ myTerm = withWindowSet $ \w -> maybe defaultAction f (W.peek w)
                defaultAction = spawn term
 
 -- layoutHook' = customLayout
-layoutHook'  =  onWorkspaces ["2:dev", "4:music"] customLayout3 $ onWorkspaces ["5:chat"] imLayout $ 
+layoutHook'  =  onWorkspaces ["2:dev", "4"] customLayout3 $ onWorkspaces ["5:chat"] imLayout $ 
                 customLayout2
 -- Bar
 myLogHook :: Handle -> X ()
