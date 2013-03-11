@@ -248,3 +248,4 @@ jump() {
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
 PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\]"
 
+export PATH=$PATH:/opt/vagrant/bin
