@@ -9,5 +9,5 @@ out_to_console yes
 # Update interval in seconds
 update_interval 1
  
- TEXT
- ^fg(\#ebac54) ^fg(\#FFFFFF)Linux $kernel ^fg(\#ebac54) ^i(/home/beto/.xmonad/dzen/cpu.xbm) CPU ^fg(\#FFFFFF)${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% ^fg(\#ebac54) ^i(/home/beto/.xmonad/dzen/mem.xbm) MEM ^fg(\#FFFFFF) $memperc% - $mem / $memmax ^fg(\#ebac54) ${if_existing /proc/net/route wlan0} ^i(/home/beto/.xmonad/dzen/net_wired.xbm) ^fg(\#00aa4a) ^i(/home/beto/.xmonad/dzen/net_down_03.xbm)${downspeed wlan0} ^fg(\#ff3333) ^i(/home/beto/.xmonad/dzen/net_up_03.xbm)${upspeed wlan0} ^fg(\#ebac54) ^i(/home/beto/.xmonad/dzen/clock.xbm) ^fg(\#FFFFFF) ${time %d/%m/%Y} ^fg(\#ebac54) ${time %R}
+TEXT
+^fg(\#ebac54) ^fg(\#FFFFFF)Linux $kernel @ $nodename ^fg(\#ebac54) ^i(/home/beto/.xmonad/dzen/cpu.xbm) CPU ^fg(\#FFFFFF)${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% ^fg(\#ebac54)LOAD ^fg(\#FFFFFF)$loadavg ^fg(\#ebac54) ^i(/home/beto/.xmonad/dzen/mem.xbm) MEM ^fg(\#FFFFFF) $memperc% - $mem / $memmax ^fg(\#ebac54) ${if_existing /proc/net/route wlan0} ^i(/home/beto/.xmonad/dzen/net_wired.xbm) ^fg(\#00aa4a) ^i(/home/beto/.xmonad/dzen/net_down_03.xbm)${downspeed wlan0} ^fg(\#ff3333) ^i(/home/beto/.xmonad/dzen/net_up_03.xbm)${upspeed wlan0} ^fg(\#ebac54) $battery $battery_bar ^fg(\#FFFFFF) ${time %d/%m/%Y} ^fg(\#ebac54) ${time %R}
