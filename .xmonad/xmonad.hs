@@ -8,21 +8,30 @@
 
 -- Imports.
 import XMonad
--- import XMonad.Layout.HintedGrid
-import XMonad.Layout.Grid
+import XMonad.Layout.HintedGrid
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import qualified Data.Map as M
 import XMonad.Actions.CycleWS
-import XMonad.Hooks.FadeInactive
-import XMonad.Config.Xfce
--- import XMonad.Util.EZConfig
 
-main = xmonad myConfig 
+-- The main function.
+-- main = xmonad statusBar toggleStrutsKey myConfig
+main = xmonad myConfig
+
+-- Command to launch the bar.
+myBar = "xmobar"
+
+-- Custom PP, configure it as you like. It determines what is being written to the bar.
+myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
+
+-- Key binding to toggle the gap for the bar.
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b) 
 
 -- Main configuration, override the defaults to your liking.
-myConfig = xfceConfig { 
+myConfig = defaultConfig { 
     borderWidth = 3 
    , focusedBorderColor = "#000000"
    , normalBorderColor = "#000000"
@@ -32,8 +41,9 @@ myConfig = xfceConfig {
    , manageHook = manageHook defaultConfig
       <+> composeAll myManagementHooks
       <+> manageDocks
-   , keys= myKeys <+> keys defaultConfig 
-   , logHook = myLogHook
+   , keys= myKeys <+> keys defaultConfig
+   , layoutHook = avoidStruts  $  layoutHook defaultConfig
+--   , logHook = myLogHook
    }
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
@@ -60,9 +70,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     ]
 
 
-myLogHook :: X ()
-myLogHook = fadeInactiveLogHook fadeAmount
-    where fadeAmount = 0.90
+-- myLogHook :: X ()
+-- myLogHook = fadeInactiveLogHook fadeAmount
+--    where fadeAmount = 0.90
  
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
@@ -77,18 +87,3 @@ myManagementHooks = [
  -- , (className =? "Pidgin") --> doF (W.shift "7:Chat")
  -- , (className =? "Gimp-2.8") --> doF (W.shift "9:Pix")
   ]
-
--- Based on config layout
-layout = tiled ||| Mirror tiled ||| Full
-  where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 5/100
