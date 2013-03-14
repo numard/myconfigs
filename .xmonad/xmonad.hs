@@ -5,6 +5,7 @@
 -- Default XmonadConfig http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Config.html (or in this directory for convenience)
 -- Interesting overview http://thinkingeek.com/2011/11/21/simple-guide-configure-xmonad-dzen2-conky/
 -- EZConfig http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Util-EZConfig.html#v:removeKeys
+--
 -- Adam's cool config https://github.com/adampetrovic/xmonad-dotfiles/blob/laptop/xmonad.hs
 --
 -- ~/.xmonad/xmonad.hs
@@ -64,11 +65,9 @@ myTerminal      = "urxvt"
 modMask' :: KeyMask
 modMask' = mod1Mask
 -- Define workspaces
-myWorkspaces    = ["1:web","2:dev","3:media","4","5:chat","6:vm", "7", "8", "9:music"]
+myWorkspaces    = ["1:web","2","3","4","5","6", "7", "8:chat", "9:music"]
 -- Dzen config
--- myStatusBar = "dzen2 -h '24' -w '1240' -ta 'l' -fg '#FFFFFF' -bg '#161616' -fn '-*-bitstream vera sans-medium-r-normal-*-11-*-*-*-*-*-*-*'"
-myStatusBar = "dzen2 -h '24' -w '1200' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
--- myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '24' -y '768' -ta 'c' -bg '#161616' -fg '#FFFFFF' -fn '-*-bitstream vera sans-medium-r-normal-*-11-*-*-*-*-*-*-*'"
+myStatusBar = "dzen2 -h '24' -w '1190' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
 myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '20' -y '748' -ta 'c' -bg '#161616' -fg '#FFFFFF' "
 myBitmapsDir = "/home/beto/.xmonad/dzen"
 --}}}
@@ -99,7 +98,7 @@ myStartupHook = do
     windows (greedyViewOnScreen 0 "2:dev");
 
 --    spawnOn "1:web" "google-chrome";
---    spawnOn "5:chat" "pidgin";
+--    spawnOn "8:chat" "pidgin";
 -- }}}
 
 -- ManageHook {{{
@@ -107,10 +106,10 @@ manageHook' :: ManageHook
 manageHook' = (composeAll . concat $
     [ [resource     =? r            --> doIgnore            |   r   <- myIgnores] -- ignore desktop
     , [className    =? c            --> doShift  "1:web"   |   c   <- myWebs   ] -- move web to web
-    , [className    =? c            --> doShift  "3:media"  |   c   <- myMovie   ] -- move movie to movie
-    , [className    =? c            --> doShift  "4"  |   c   <- myMusic   ] -- move music to music
-    , [className    =? c            --> doShift  "5:chat"   |   c   <- myChat  ] -- move chat to chat
-    , [className    =? c            --> doShift  "6:vm"   |   c   <- myVm  ] -- move vm to vm 
+--    , [className    =? c            --> doShift  "3:media"  |   c   <- myMovie   ] -- move movie to movie
+    , [className    =? c            --> doShift  "9:music"  |   c   <- myMusic   ] -- move music to music
+    , [className    =? c            --> doShift  "8:chat"   |   c   <- myChat  ] -- move chat to chat
+--    , [className    =? c            --> doShift  "6:vm"   |   c   <- myVm  ] -- move vm to vm 
     , [className    =? c            --> doCenterFloat       |   c   <- myFloats ] -- float my floats
     , [name         =? n            --> doCenterFloat       |   n   <- myNames  ] -- float my names
     , [isFullscreen                 --> myDoFullFloat                           ]
@@ -126,11 +125,11 @@ manageHook' = (composeAll . concat $
         myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","uzbl","Uzbl-core","uzbl-core","Google-chrome","Chromium","Shredder","Mail"]
         myMovie   = ["Boxee", "vlc", "Vlc", "vlc-main", "VLC media player"]
         myMusic   = ["Rhythmbox","Clementine","Tomahawk","Banshee","Banshee Media Player","banshee-1","Exaile","Spotify"]
-        myChat    = ["Pidgin","Buddy List"]
+        myChat    = ["Pidgin","Buddy List","Skype","XChat"]
         myVm = ["VirtualBox"]
 
         -- resources
-        myIgnores = ["desktop","desktop_window","notify-osd","stalonetray","trayer"]
+        myIgnores = ["desktop","desktop_window","notify-osd","stalonetray","trayer","synapse"]
 
         -- names
         myNames   = ["bashrun","Google Chrome Options","Chromium Options"]
@@ -165,7 +164,7 @@ myTerm = withWindowSet $ \w -> maybe defaultAction f (W.peek w)
                defaultAction = spawn term
 
 -- layoutHook' = customLayout
-layoutHook'  =  onWorkspaces ["2:dev", "4"] customLayout3 $ onWorkspaces ["5:chat"] imLayout $ 
+layoutHook'  =  onWorkspaces [""] customLayout3 $ onWorkspaces ["8:chat"] imLayout $ 
                 customLayout2
 -- Bar
 myLogHook :: Handle -> X ()
@@ -266,6 +265,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- the mouse.
 --  , ((modMask .|. shiftMask, xK_p),
 --     spawn "select-screenshot")
+   , ((modMask, xK_Print), spawn "/usr/bin/shutter -s -e")
 
   -- Take full screenshot in multi-head mode.
   -- That is, take a screenshot of everything you see.
