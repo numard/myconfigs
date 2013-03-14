@@ -13,7 +13,7 @@
 
 # background <color>         # color can be specified as an HTML hex triplet or
                              # as a name from rgb.txt, note that '#' must be quoted
-background "#000000"
+background "#161616"
 
 # decorations <decspec>      # set trays window decorations; possible values for
                              # decspec are: all, title, border, none
@@ -69,7 +69,7 @@ log_level err
 
 # max_geometry <geometry>    # maximal tray dimensions; 0 in width/height means
                              # no limit
-max_geometry 0x0
+max_geometry 96x24 
 
 # no_shrink [<bool>]         # disables shrink-back mode
 no_shrink false
@@ -107,11 +107,11 @@ tint_color white
 
 # tint_level <level>         # set tinting level; level ranges from 0 (disabled)
                              # to 255
-tint_level 0
+tint_level 0 
 
 # transparent [<bool>]       # whether to use root-transparency (background
                              # image must be set with Esetroot or compatible utility)
-transparent true
+transparent true 
 
 # vertical [<bool>]          # whether to use vertical layout (horisontal layout
                              # is used by default)
