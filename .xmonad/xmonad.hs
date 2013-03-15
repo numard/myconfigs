@@ -67,7 +67,7 @@ modMask' = mod1Mask
 -- Define workspaces
 myWorkspaces    = ["1:web","2","3","4","5","6", "7", "8:chat", "9:music"]
 -- Dzen config
-myStatusBar = "dzen2 -h '24' -w '1190' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
+myStatusBar = "dzen2 -h '24' -w '1140' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
 myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '20' -y '748' -ta 'c' -bg '#161616' -fg '#FFFFFF' "
 myBitmapsDir = "/home/beto/.xmonad/dzen"
 --}}}
@@ -254,6 +254,10 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --, ((modMask .|. controlMask, xK_l),
   , ((modMask .|. controlMask, xK_s),
      spawn "xscreensaver-command --lock")
+
+  -- reset screen resolution 
+  , ((modMask .|. shiftMask, xK_grave),
+   spawn "/usr/bin/xrandr --auto")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
