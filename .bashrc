@@ -225,7 +225,7 @@ clearapc() {
 }
 
 copykeys() {
-	ssh-copy-id -i ~/dev/gitosis-admin/keydir/${1}.pub ${2} 
+	ssh-copy-id -i ~/dev/pubkeys/keydir/${1}.pub ${2} 
 }
 
 jump() {
