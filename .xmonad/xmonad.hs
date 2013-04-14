@@ -65,7 +65,7 @@ myTerminal      = "urxvt"
 modMask' :: KeyMask
 modMask' = mod1Mask
 -- Define workspaces
-myWorkspaces    = ["1:web","2","3","4","5","6", "7", "8:chat", "9:music"]
+myWorkspaces    = ["1","2","3","4","5","6", "7", "8:chat", "9:music"]
 -- Dzen config
 myStatusBar = "dzen2 -h '24' -w '1140' -ta 'l' -fg '#FFFFFF' -bg '#161616'" 
 myBtmStatusBar = "conky -c /home/beto/.xmonad/conky_bottom_dzen | dzen2 -w '1366' -h '20' -y '748' -ta 'c' -bg '#161616' -fg '#FFFFFF' "
@@ -105,7 +105,7 @@ myStartupHook = do
 manageHook' :: ManageHook
 manageHook' = (composeAll . concat $
     [ [resource     =? r            --> doIgnore            |   r   <- myIgnores] -- ignore desktop
-    , [className    =? c            --> doShift  "1:web"   |   c   <- myWebs   ] -- move web to web
+    , [className    =? c            --> doShift  "1"   |   c   <- myWebs   ] -- move web to web
 --    , [className    =? c            --> doShift  "3:media"  |   c   <- myMovie   ] -- move movie to movie
     , [className    =? c            --> doShift  "9:music"  |   c   <- myMusic   ] -- move music to music
     , [className    =? c            --> doShift  "8:chat"   |   c   <- myChat  ] -- move chat to chat
@@ -166,6 +166,8 @@ myTerm = withWindowSet $ \w -> maybe defaultAction f (W.peek w)
 -- layoutHook' = customLayout
 layoutHook'  =  onWorkspaces [""] customLayout3 $ onWorkspaces ["8:chat"] imLayout $ 
                 customLayout2
+
+
 -- Bar
 myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ defaultPP
@@ -269,7 +271,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- the mouse.
 --  , ((modMask .|. shiftMask, xK_p),
 --     spawn "select-screenshot")
-   , ((modMask, xK_Print), spawn "/usr/bin/shutter -s -e")
+   , ((modMask, xK_Print), spawn "/usr/bin/shutter -s")
 
   -- Take full screenshot in multi-head mode.
   -- That is, take a screenshot of everything you see.
