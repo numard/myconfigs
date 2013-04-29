@@ -173,6 +173,7 @@ export PERL_MB_OPT="--install_base /home/beto/perl5";
 export PERL_MM_OPT="INSTALL_BASE=/home/beto/perl5";
 export PERL5LIB="/home/beto/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/beto/perl5/lib/perl5";
 export PATH="/home/beto/perl5/bin:$PATH";
+export PATH=$PATH:/opt/vagrant/bin:/opt/node/bin
 
 # An alternative to making an alias...which doesn't support the use of parameters, so i can't add $1 before a &..which means the first use of e ties my screen to the process 
 e() {
@@ -248,4 +249,3 @@ jump() {
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
 PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\]"
 
-export PATH=$PATH:/opt/vagrant/bin
