@@ -5,6 +5,11 @@ date >> $F
 
 xrdb ~/.Xresources
 
+# Enable zapping (C-A-<Bksp> kills X)
+setxkbmap -option terminate:ctrl_alt_bksp
+
+# Use XToolkit in java applications
+export AWT_TOOLKIT=XToolkit
 
 #if [ ! `pulseaudio --check` ] ; then 
 #	pulseaudio --daemonize
@@ -12,9 +17,6 @@ xrdb ~/.Xresources
 
 echo 'before change_bg' >> $F 
 ~/bin/change_bg.sh 
-
-echo 'b4 stalonetray' >> $F
-/usr/bin/stalonetray &
 
 sleep 1
 echo 'before xscreensaver' >>$F
@@ -30,4 +32,4 @@ volti &
 /usr/bin/xfce4-clipman &
 #exec shutter
 
-xmonad
+/usr/bin/i3 -V >> ~/.xsession-errors
