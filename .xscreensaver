@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.15 for beto on Mon Feb 18 10:43:49 2013.
+# Written by xscreensaver-demo 5.15 for beto on Tue Apr 30 06:54:41 2013.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:05:00
@@ -208,7 +208,7 @@ programs:								      \
 -				intermomentary -root -num-discs 211	    \n\
 -				memscroller -root			    \n\
 - GL: 				noof -root				    \n\
-				pacman -root				    \n\
+-				pacman -root				    \n\
 - GL: 				pinion -root				    \n\
 - GL: 				polyhedra -root				    \n\
 - GL: 				providence -root			    \n\
