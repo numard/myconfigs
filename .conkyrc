@@ -42,4 +42,6 @@ TEXT
   { "full_text": "CPU ${cpubar -t}" },
   { "full_text": "Disk: ${diskio}" },
   { "full_text": "Eth0: ${addr eth0} DOWN: ${downspeed eth0} UP: ${upspeed eth0}", "color": "\#00ff00"},
+  { "full_text": "Wlan0: ${addr wlan0} DOWN: ${downspeed wlan0} UP: ${upspeed wlan0}", "color": "\#00ff00"},
+  { "full_text": "${execi 2 /home/beto/bin/show_battery.sh }" },
   { "full_text": "${time %Y-%m-%d %H:%M:%S}", "color": "\#00ffff" }],
