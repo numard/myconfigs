@@ -113,7 +113,7 @@ bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit sh
 bindsym $mod+Shift+s exec "/usr/bin/xscreensaver-command --lock"
 
 # Capture selection in screen
-bindsym $mod+Shift+Print exec "/usr/bin/shutter -s"
+bindsym $mod+Print exec "/usr/bin/shutter -s"
 
 #Safe mode screen resolution reset
 bindsym $mod+Shift+grave exec "/usr/bin/xrandr --auto"
