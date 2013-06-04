@@ -51,7 +51,7 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
-PATH=$PATH:/sbin/
+PATH=$PATH:/home/beto/dev/go/bin:/sbin/
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -136,7 +136,7 @@ alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias vpn='(cd _1/vpn ; sudo openvpn --config client.conf --script-security 2)'
-alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/whitehats_sectest/whitehats_aws-20130225.pem ; echo ; ssh-add -l'
+alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/main/pshan-20130521.pem; ssh-add ~/_1/access_aws/whitehats_sectest/whitehats_aws-20130225.pem ; echo ; ssh-add -l'
 alias loaddisks='truecrypt -t --auto-mount=favorites'
 
 # useful for git and others
@@ -154,6 +154,11 @@ export AWS_IAM_HOME=~beto/bin/iam-cli-tools/
 ## Hook up to RDS AWS tools
 export PATH=$PATH:~beto/bin/rds-cli-tools/bin/
 export AWS_RDS_HOME=~beto/bin/rds-cli-tools/
+
+## Hook up to AWS ELB tools
+
+export PATH=$PATH:~beto/bin/elb-tools/bin/
+export AWS_ELB_HOME=~beto/bin/elb-tools/
 
 # JAVA - needed for AWS CLI
 export JAVA_HOME=/opt/jdk/jre
