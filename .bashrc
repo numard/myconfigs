@@ -135,9 +135,13 @@ alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
-alias vpn='(cd _1/vpn ; sudo openvpn --config client.conf --script-security 2)'
+alias vpn='(cd _1/vpn ; sudo openvpn --config clientEC2.conf --script-security 2)'
+alias vpnsyd='(cd _1/vpn ; sudo openvpn --config clientSYD.conf --script-security 2)'
 alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/main/pshan-20130521.pem; ssh-add ~/_1/access_aws/whitehats_sectest/whitehats_aws-20130225.pem ; echo ; ssh-add -l'
 alias loaddisks='truecrypt -t --auto-mount=favorites'
+
+# fuck off ls color
+alias ls='ls --color=none'
 
 # useful for git and others
 export EDITOR=vim
@@ -217,9 +221,9 @@ ec2() {
     CWD=`pwd`
     cd $ec2Dir
     if [ "$2" == "all" ] ; then
-        grep -A 3 $1 *
+        grep -A 7 $1 *
     else
-        grep -A 3 $1 instances-latest
+        grep -A 7 $1 instances-latest
     fi
     
     cd $CWD
