@@ -88,6 +88,8 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+minus workspace 11
+bindsym $mod+equal workspace 12
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace 1
