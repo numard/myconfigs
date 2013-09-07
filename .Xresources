@@ -8,7 +8,7 @@ Rxvt.scrollBar_right: true
 Rxvt.termName: rxvt
 Rxvt.transparent: true
 ! URxvt*.shading: 0 (opaque) to 99 darkens, 101 to 200 lightens
-Rxvt.shading: 33 
+Rxvt.shading: 15
 Rxvt.depth: 32
 Rxvt.font: 9x15 
 Clipman.geometry: 24x24+0+0
