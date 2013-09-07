@@ -8,6 +8,9 @@ if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
 
+execute pathogen#infect()
+
+" FIXME probably this 
 " =============== Pathogen Initialization ===============
 " This loads all the plugins in ~/.vim/bundle
 " Use tpope's pathogen plugin to manage all other plugins
@@ -33,6 +36,7 @@ set autoread                    "Reload files changed outside vim
 set hidden
 
 "turn on syntax highlighting
+syntax enable
 syntax on
 
 " ================ Search Settings  =================
@@ -106,4 +110,7 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-execute pathogen#infect()
+
+" Solarized colour scheme - installed as bundle under pathogen"
+set background=dark
+colorscheme solarized
