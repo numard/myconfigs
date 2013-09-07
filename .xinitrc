@@ -25,6 +25,8 @@ xscreensaver -nosplash  &
 /usr/bin/dropbox start  &
 /usr/bin/synapse --startup &
 
+# notification thingy
+/usr/bin/dunst
 # exec/usr/bin/skype 
 
 echo 'b4 volti' >> $F
