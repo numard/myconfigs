@@ -113,4 +113,5 @@ set sidescroll=1
 
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
+set t_Co=256
 colorscheme solarized

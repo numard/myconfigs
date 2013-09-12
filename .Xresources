@@ -77,7 +77,7 @@
 !!URxvt.background: [95]#000000
 !Rxvt.foreground: Grey
 Rxvt.scrollBar_right: true
-Rxvt.termName: screen-256color
+Rxvt.termName: xterm-256color
 !Rxvt.transparent: true
 !! URxvt*.shading: 0 (opaque) to 99 darkens, 101 to 200 lightens
 !Rxvt.shading: 15
