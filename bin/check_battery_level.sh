@@ -1,8 +1,8 @@
 #! /bin/bash
 # Original from https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/
 
-SAFE_PERCENT=99  # Still safe at this level.
-DANGER_PERCENT=98  # Warn when battery at this level.
+SAFE_PERCENT=31  # Still safe at this level.
+DANGER_PERCENT=15  # Warn when battery at this level.
 CRITICAL_PERCENT=5  # Hibernate when battery at this level.
 
 NAGBAR_PID=0
@@ -19,9 +19,9 @@ function launchNagBar
 
 function fyiHibernate 
 {
-    i3-nagbar -m "BATTERY IS TOO LOWi (${1}%) - HIBERNATING NOW!" -b 'Hibernate!' "$CMD_HIBERNATE" >/dev/null 2>&1 &
+    i3-nagbar -m "BATTERY IS TOO LOW (${1}%) - HIBERNATE!! HIBERNATE!!! HIBERNATING NOW!" -b 'Hibernate!' "$CMD_HIBERNATE" >/dev/null 2>&1 &
     NAGBAR_PID=$!; echo $NAGBAR_PID > $PID_FILE
-    sleep 5 
+    sleep 15 
     killNagBar
     $CMD_HIBERNATE 
 
@@ -39,20 +39,14 @@ killNagBar
 if [[ -n $(acpitool -b | grep -i discharging) ]]; then
     rem_bat=$(acpitool -b | grep -Eo "[0-9]+\.[0-9]+%" | cut -d\. -f 1)
 
-    if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
-        SLEEP_TIME=10
-    else
-        SLEEP_TIME=5
+    if [[ $rem_bat -lt $SAFE_PERCENT ]]; then
         killNagBar
         if [[ $rem_bat -le $DANGER_PERCENT ]]; then
-            SLEEP_TIME=2
             launchNagBar $rem_bat
         fi
         if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
             fyiHibernate 
         fi
     fi
-else
-    SLEEP_TIME=10
 fi
 
