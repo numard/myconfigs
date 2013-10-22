@@ -2,7 +2,7 @@
 # Original from https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/
 
 SAFE_PERCENT=31  # Still safe at this level.
-DANGER_PERCENT=15  # Warn when battery at this level.
+DANGER_PERCENT=20  # Warn when battery at this level.
 CRITICAL_PERCENT=5  # Hibernate when battery at this level.
 
 NAGBAR_PID=0
