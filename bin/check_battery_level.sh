@@ -29,8 +29,8 @@ function fyiHibernate
 
 function killNagBar
 {
-    kill `cat $PID_FILE` 2>/dev/null
-    rm -f $PID_FILE
+    (kill `cat $PID_FILE`) 2>/dev/null
+    rm -f $PID_FILE 2>/dev/null
 }
 
 
