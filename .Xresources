@@ -83,4 +83,6 @@ Rxvt.termName: xterm-256color
 !Rxvt.shading: 15
 Rxvt.depth: 32
 Rxvt.font: 9x15 
-Clipman.geometry: 24x24+0+0
+Clipman.geometry: 25x24+0+0
+! Scrollback buffer #lines
+Rxvt.saveLines: 200000
