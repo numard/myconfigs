@@ -73,7 +73,8 @@ filetype plugin on
 filetype indent on
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-set nowrap       "Don't wrap lines
+set wrapmargin=4
+set wrap       
 set linebreak    "Wrap lines at convenient points
 
 " ================ Key remapping ====================
