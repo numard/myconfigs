@@ -82,8 +82,13 @@ set linebreak    "Wrap lines at convenient points
 nore ; :
 nore , ;
 
+" reselect after line indent..."
 vnoremap < <gv
 vnoremap > >gv
+
+" improve movement wrapped lines"
+nnoremap j gj
+nnoremap k gk
 
 " ================ Folds ============================
 
