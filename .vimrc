@@ -39,6 +39,9 @@ set hidden
 syntax enable
 syntax on
 
+"Git diff split..."
+autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
+
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
