@@ -82,6 +82,9 @@ set linebreak    "Wrap lines at convenient points
 nore ; :
 nore , ;
 
+vnoremap < <gv
+vnoremap > >gv
+
 " ================ Folds ============================
 
 set foldmethod=indent   "fold based on indent
