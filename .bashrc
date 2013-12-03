@@ -234,7 +234,7 @@ clearapc() {
 }
 
 copykeys() {
-	ssh-copy-id -i ~/dev/pubkeys/keydir/${1}.pub ${2} 
+	ssh-copy-id -i ~/dev/puppet/modules/fl_people/files/sshkeys/${1}.pub ${2} 
 }
 
 jump() {
