@@ -90,8 +90,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " improve movement wrapped lines"
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 " ================ Folds ============================
 
