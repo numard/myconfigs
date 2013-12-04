@@ -79,6 +79,12 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set wrapmargin=4
 set wrap       
 set linebreak    "Wrap lines at convenient points
+"prevent automatically inserting line breaks in newly entered text.
+set textwidth=0
+set wrapmargin=0
+"keep your existing 'textwidth' settings for most lines in your file, but not
+"have Vim automatically reformat when typing on existing lines,
+set formatoptions+=l
 
 " ================ Key remapping ====================
 
