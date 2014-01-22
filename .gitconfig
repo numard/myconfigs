@@ -1,5 +1,5 @@
 [user]
-	email = beto@blah
+	email = beto@freelancer.com
 	name = Beto Meijome
 [giggle]
 	main-window-view = HistoryView
@@ -11,3 +11,15 @@
 	date = local
 [merge]
 	ff = false
+    tool = bc3
+# http://stackoverflow.com/questions/2069490/git-diff-with-beyond-compare
+[diff]
+    tool = bc3
+[difftool]
+    prompt = false
+[difftool "bc3"]
+    cmd = /usr/bin/bcompare "$LOCAL" "$REMOTE"
+[mergetool]
+    prompt = false
+[mergetool "bc3"]
+    cmd = /usr/bin/bcompare "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
