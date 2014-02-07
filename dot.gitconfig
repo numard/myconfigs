@@ -1,12 +1,6 @@
 [user]
 	email = beto@freelancer.com
 	name = Beto Meijome
-[giggle]
-	main-window-view = HistoryView
-	main-window-maximized = true
-	main-window-geometry = 700x550+2871+350
-	history-view-vpane-position = 584
-	file-view-vpane-position = 1016
 [log]
 	date = local
 [merge]
