@@ -43,6 +43,24 @@ syntax on
 "Git diff split..."
 autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
 
+" http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" NO LUCK w/my colours? Highlight ending spces...but not highlighting each space you type 
+"  at the end of the line, only when you open a file or leave insert mode.
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"au ColorScheme * highlight ExtraWhitespace guibg=red
+"au BufEnter * match ExtraWhitespace /\s\+$/
+"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
