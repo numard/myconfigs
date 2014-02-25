@@ -28,7 +28,7 @@ xscreensaver -nosplash  &
 /usr/bin/synapse --startup &
 
 # notification thingy
-/usr/bin/dunst
+/usr/bin/dunst &
 # exec/usr/bin/skype 
 
 echo 'b4 volti' >> $F
