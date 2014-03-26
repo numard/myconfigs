@@ -30,6 +30,7 @@ set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+set nocp                        " Enable more options
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -52,6 +53,33 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" Highlight tabs and trailing spaces
+autocmd BufNewFile,BufRead * set tw=80 ts=4 sts=4 sw=4 et list listchars=tab:>.,trail:-
+
+" Highlight lines that are too long
+autocmd BufNewFile,BufRead * match Error /\%>80v.\+/
+
+" This will make CTRL+L toggle line numbers on/off and CTRL+P toggle paste mode on/off
+function! g:ToggleNuMode()
+    if(&nu == 1)
+        set nonu
+    else
+        set nu
+    endif
+endfunc
+
+function! g:TogglePasteMode()
+    if(&paste == 1)
+        set nopaste
+    else
+        set paste
+    endif
+endfunc
+
+nnoremap <C-L> :call g:ToggleNuMode()<cr>
+nnoremap <C-P> :call g:TogglePasteMode()<cr>
+" =====================================================
 
 " NO LUCK w/my colours? Highlight ending spces...but not highlighting each space you type 
 "  at the end of the line, only when you open a file or leave insert mode.
@@ -86,10 +114,10 @@ set undofile
 set autoindent
 set smartindent
 set smarttab
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set expandtab " Replace tabs with 4 spaces
+set tabstop=4 " Set tabs to be 4 spaces
+set shiftwidth=4 " Auto tab 4 spaces
+set softtabstop=4 " Backspace will act as though 4 spaces are a tab
 
 filetype plugin on
 filetype indent on
