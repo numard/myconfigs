@@ -130,6 +130,7 @@ alias g="/usr/bin/gitg &"
 alias mh='time ( cd ~/dev/engwiki/docs ; make html)'
 alias mc='( cd ~/dev/engwiki/docs ; time make clean ; mh )' 
 alias envaws='source ~/dev/env.aws/bin/activate'
+alias awscli='source ~/dev/venv_awscli/bin/activate'
 alias json='python -mjson.tool'
 alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
@@ -142,6 +143,8 @@ alias loaddisks='truecrypt -t --auto-mount=favorites'
 alias arct='arc todo'
 alias m8='mtr 8.8.8.8'
 
+alias gfa='git fetch --all'
+alias gpr='git pull --rebase'
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
