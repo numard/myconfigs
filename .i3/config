@@ -120,6 +120,9 @@ bindsym $mod+Print exec "/usr/bin/shutter -s"
 #Safe mode screen resolution reset
 bindsym $mod+Shift+grave exec "/usr/bin/xrandr --auto"
 
+# Launch Thunar, GUI file management
+bindsym $mod+Shift+e exec "/usr/bin/thunar"
+
 # iresize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
