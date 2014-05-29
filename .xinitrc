@@ -36,4 +36,10 @@ volti &
 /usr/bin/xfce4-clipman &
 #exec shutter
 
+# Kb repeat rate : 250ms wait, then 50 cps
+/usr/bin/xset r rate 250 50
+# pointer acceleration
+/usr/bin/xset m 4/1 3
+
+
 /usr/bin/i3 -V >> ~/.xsession-errors
