@@ -34,7 +34,7 @@ fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # User specific aliases and functions
@@ -60,12 +60,12 @@ PATH=$PATH:/home/beto/dev/go/bin:/sbin/
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -233,11 +233,11 @@ ec2() {
 }
 
 clearapc() {
-	ssh ${1}.freelancer.com "curl http://localhost:8080/clear.php"
+    ssh ${1}.freelancer.com "curl http://localhost:8080/clear.php"
 }
 
 copykeys() {
-	ssh-copy-id -i ~/dev/sys/puppet/modules/fl_people/files/sshkeys/${1}.pub ${2} 
+    ssh-copy-id -i ~/dev/sys/puppet/modules/fl_people/files/sshkeys/${1}.pub ${2} 
 }
 
 jump() {
@@ -258,5 +258,6 @@ jump() {
 
 #PS1="\[\033[01;34m\]\D{%Y-%m-%d} \t :: ${debian_chroot:+($debian_chroot)}\u@\h\n[\w] \$ :\[\033[00m\]"
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
+export PROMPT_COMMAND='history -a'
 PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\]"
 
