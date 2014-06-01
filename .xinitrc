@@ -1,7 +1,7 @@
 #!/bin/bash
 
 F=/tmp/beto.log
-date >> $F 
+date >> $F
 
 xrdb ~/.Xresources
 
