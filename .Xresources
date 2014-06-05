@@ -21,26 +21,28 @@
 
 ! Dark
 
-!#define S_base03        #002b36
-!#define S_base02        #073642
-!#define S_base01        #586e75
-!#define S_base00        #657b83
-!#define S_base0         #839496
-!#define S_base1         #93a1a1
-!#define S_base2         #eee8d5
-!#define S_base3         #fdf6e3
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
 
 
 ! Light
 
-#define S_base03        #fdf6e3
-#define S_base02        #eee8d5
-#define S_base01        #93a1a1
-#define S_base00        #839496
-#define S_base0         #657b83
-#define S_base1         #586e75
-#define S_base2         #073642
-#define S_base3         #002b36
+!#define S_base03        #fdf6e3
+!! #define S_base03        #f6f6f6
+!#define S_base02        #eee8d5
+!#define S_base01        #93a1a1
+!#define S_base00        #839496
+!!#define S_base0         #657b83
+!#define S_base0         #eeeeee
+!#define S_base1         #586e75
+!#define S_base2         #073642
+!#define S_base3         #002b36
 
 
 ! To only apply colors to your terminal, for example, prefix
@@ -48,7 +50,8 @@
 !
 ! URxvt*background:            S_base03
 
-*background:              S_base03
+!*background:              S_base03
+*background:              #000000
 *foreground:              S_base0
 *fading:                  5
 *fadeColor:               S_base03
@@ -56,7 +59,7 @@
 *pointerColorBackground:  S_base01
 *pointerColorForeground:  S_base1
 
-*color0:                  S_base02
+!*color0:                  S_base02
 *color1:                  S_red
 *color2:                  S_green
 *color3:                  S_yellow
