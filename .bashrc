@@ -145,9 +145,13 @@ alias m8='mtr 8.8.8.8'
 
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
+alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
+
+## Hook up AWSCLI with .boto for profiles
+export AWS_CONFIG_FILE=~/.boto
 
 ## Hook up to EC2 tools
 export PATH=$PATH:~beto/bin/ec2-api-tools/bin/
@@ -261,3 +265,4 @@ jump() {
 export PROMPT_COMMAND='history -a'
 PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\]"
 
+#TZ='America/Vancouver'; export TZ
