@@ -130,7 +130,7 @@ alias g="/usr/bin/gitg &"
 alias mh='time ( cd ~/dev/engwiki/docs ; make html)'
 alias mc='( cd ~/dev/engwiki/docs ; time make clean ; mh )' 
 alias envaws='source ~/dev/env.aws/bin/activate'
-alias awscli='source ~/dev/venv_awscli/bin/activate'
+alias awscli='source ~/dev/venv_awscli/bin/activate; complete -C aws_completer aws'
 alias json='python -mjson.tool'
 alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
@@ -149,9 +149,6 @@ alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
-
-## Hook up AWSCLI with .boto for profiles
-export AWS_CONFIG_FILE=~/.boto
 
 ## Hook up to EC2 tools
 export PATH=$PATH:~beto/bin/ec2-api-tools/bin/
