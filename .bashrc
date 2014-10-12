@@ -51,7 +51,7 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
-PATH=$PATH:/home/beto/dev/go/bin:/sbin/
+PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -136,11 +136,8 @@ alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
-alias vpn='(cd _1/vpn ; sudo openvpn --config clientEC2.conf --script-security 2)'
-alias vpnsyd='(cd _1/vpn ; sudo openvpn --config clientSYD.conf --script-security 2)'
 alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/main/pshan-20130521.pem; ssh-add /home/beto/_1/access_aws/main/f8r-syd-20130114.pem ; echo ; ssh-add -l'
 alias loaddisks='truecrypt -t --auto-mount=favorites'
-alias arct='arc todo'
 alias m8='mtr 8.8.8.8'
 
 alias gfa='git fetch --all'
@@ -149,43 +146,6 @@ alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
-
-## Hook up to EC2 tools
-export PATH=$PATH:~beto/bin/ec2-api-tools/bin/
-export EC2_HOME=~beto/bin/ec2-api-tools/
-
-## Hook up to IAM AWS tools
-export PATH=$PATH:~beto/bin/iam-cli-tools/bin/
-export AWS_IAM_HOME=~beto/bin/iam-cli-tools/
-
-## Hook up to RDS AWS tools
-export PATH=$PATH:~beto/bin/rds-cli-tools/bin/
-export AWS_RDS_HOME=~beto/bin/rds-cli-tools/
-
-## Hook up to AWS ELB tools
-
-export PATH=$PATH:~beto/bin/elb-tools/bin/
-export AWS_ELB_HOME=~beto/bin/elb-tools/
-
-# JAVA - needed for AWS CLI
-export JAVA_HOME=/opt/jdk/jre
-export PATH=$PATH:/opt/jdk/bin:$JAVA_HOME
-
-## Support for arcanist
-export PATH=$PATH:~beto/bin/arcanist/bin
-# Autocomplete support for arcanist
-source ~/bin/arcanist/resources/shell/bash-completion
-
-# Avoid having to write freelancer.com for every host
-export LOCALDOMAIN=freelancer.com
-
-# Perl specifics - added by Mr Cpan
-export PERL_LOCAL_LIB_ROOT="/home/beto/perl5";
-export PERL_MB_OPT="--install_base /home/beto/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/beto/perl5";
-export PERL5LIB="/home/beto/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/beto/perl5/lib/perl5";
-export PATH="/home/beto/perl5/bin:$PATH";
-export PATH=$PATH:/opt/vagrant/bin:/opt/node/bin
 
 # An alternative to making an alias...which doesn't support the use of parameters, so i can't add $1 before a &..which means the first use of e ties my screen to the process 
 e() {
@@ -233,18 +193,6 @@ ec2() {
     
 }
 
-clearapc() {
-    ssh ${1}.freelancer.com "curl http://localhost:8080/clear.php"
-}
-
-copykeys() {
-    ssh-copy-id -i ~/dev/sys/puppet/modules/fl_people/files/sshkeys/${1}.pub ${2} 
-}
-
-jump() {
-    ssh -t syd1.freelancer.com ssh $1
-}
-
 # Guide to prompt:
 #  * set the title bar to show the current time (\t) & current working directory (\w): "\[\e]0;\t \w\a\]"
 #  * set the prompt to show:
@@ -260,6 +208,5 @@ jump() {
 #PS1="\[\033[01;34m\]\D{%Y-%m-%d} \t :: ${debian_chroot:+($debian_chroot)}\u@\h\n[\w] \$ :\[\033[00m\]"
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
 export PROMPT_COMMAND='history -a'
-PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\]"
+PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\] "
 
-#TZ='America/Vancouver'; export TZ
