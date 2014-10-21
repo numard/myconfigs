@@ -177,6 +177,12 @@ function get_git_color() {
     echo "$git_prompt_color"
 }
 
+if [ -e ~/.git-prompt.sh ] ; then
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWSTASHSTATE=true
+    source ~/.git-prompt.sh
+fi
 
 # Get name / info about ec2 instance...
 ec2() {
@@ -207,6 +213,6 @@ ec2() {
 
 #PS1="\[\033[01;34m\]\D{%Y-%m-%d} \t :: ${debian_chroot:+($debian_chroot)}\u@\h\n[\w] \$ :\[\033[00m\]"
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
-export PROMPT_COMMAND='history -a'
-PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\] "
+#PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\] "
+PS1='\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]$( __git_ps1 ) :: \[\033[00m\]'
 
