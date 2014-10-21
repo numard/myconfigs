@@ -122,26 +122,23 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+  . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
 # Handy aliases
-alias awsmain="source ~/bin/aws_main.sh"
-alias awstest="source ~/bin/aws_systest.sh"
 alias pssh=parallel-ssh
 alias g="/usr/bin/gitg &"
-alias mh='time ( cd ~/dev/engwiki/docs ; make html)'
-alias mc='( cd ~/dev/engwiki/docs ; time make clean ; mh )' 
-alias envaws='source ~/dev/env.aws/bin/activate'
 alias awscli='source ~/dev/venv_awscli/bin/activate; complete -C aws_completer aws'
 alias json='python -mjson.tool'
 alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
-alias loadkeys='ssh-add ~/.ssh/id_rsa ; ssh-add ~/_1/access_aws/main/f8r-20120810 ; ssh-add ~/_1/access_aws/main/freelancer-sg.pem ; ssh-add ~/_1/access_aws/main/freelancer-us-oregon.pem ; ssh-add ~/_1/access_aws/main/pshan-20130521.pem; ssh-add /home/beto/_1/access_aws/main/f8r-syd-20130114.pem ; echo ; ssh-add -l'
-alias loaddisks='truecrypt -t --auto-mount=favorites'
 alias m8='mtr 8.8.8.8'
 
 alias gfa='git fetch --all'
-alias gpr='git pull --rebase'
+alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 # useful for git and others
 export EDITOR=vim
@@ -198,6 +195,8 @@ ec2() {
     cd $CWD
     
 }
+
+export PROMPT_COMMAND='history -a'
 
 # Guide to prompt:
 #  * set the title bar to show the current time (\t) & current working directory (\w): "\[\e]0;\t \w\a\]"
