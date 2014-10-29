@@ -137,6 +137,8 @@ alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
 
+alias bc3="bcompare"
+
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
