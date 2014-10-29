@@ -5,3 +5,4 @@ xmonad.o
 xmonad-x86_64-linux
 .vim/backups/*
 backups/*
+.DS_Store
