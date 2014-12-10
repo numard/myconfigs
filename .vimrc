@@ -101,13 +101,15 @@ set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 " set nobackup
 " set nowb
 
-" ================ Persistent Undo ==================
-" Keep undo history across sessions, by storing in file.
-" Only works all the time.
+if v:version >= 730
+    " ================ Persistent Undo ==================
+    " Keep undo history across sessions, by storing in file.
+    " Only works all the time.
 
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
+    silent !mkdir ~/.vim/backups > /dev/null 2>&1
+    set undodir=~/.vim/backups
+    set undofile
+endif
 
 " ================ Indentation ======================
 
