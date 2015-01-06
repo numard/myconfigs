@@ -128,7 +128,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Handy aliases
-alias pssh=parallel-ssh
 alias g="/usr/bin/gitg &"
 alias awscli='source ~/dev/venv_awscli/bin/activate; complete -C aws_completer aws'
 alias json='python -mjson.tool'
@@ -143,6 +142,9 @@ alias bc3="bcompare"
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+alias mcoprod="ssh au-ops001 mco"
+
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
