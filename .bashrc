@@ -52,6 +52,7 @@ case "$TERM" in
 esac
 
 PATH=/opt/local/bin:/opt/local/sbin/:$PATH
+PATH=$PATH:$HOME/.jenv/bin
 
 export PATH
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -220,3 +221,4 @@ export PROMPT_COMMAND='history -a'
 #PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\] "
 PS1='\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]$( __git_ps1 ) :: \[\033[00m\]'
 
+eval "$(jenv init -)"
