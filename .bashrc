@@ -137,11 +137,13 @@ alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
+alias m1='mtr 10.32.140.20'
 
 alias bc3="bcompare"
 
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
+alias gca='git commit --amend'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 alias mcoprod="ssh au-ops001 mco"
@@ -222,3 +224,6 @@ export PROMPT_COMMAND='history -a'
 PS1='\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]$( __git_ps1 ) :: \[\033[00m\]'
 
 eval "$(jenv init -)"
+
+PERL_MB_OPT="--install_base \"/Users/nmeijome/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
