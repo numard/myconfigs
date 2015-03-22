@@ -41,6 +41,8 @@ set hidden
 syntax enable
 syntax on
 
+" 2 space tabbing for puppet"
+autocmd FileType puppet,pp shiftwidth=2 tabstop=2 softtabstop=2
 "Git diff split..."
 autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
 
@@ -126,7 +128,7 @@ filetype indent on
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set wrapmargin=4
-set wrap       
+set wrap
 set linebreak    "Wrap lines at convenient points
 "prevent automatically inserting line breaks in newly entered text.
 set textwidth=0
@@ -181,4 +183,4 @@ set sidescroll=1
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
 set t_Co=256
-" colorscheme solarized
+"colorscheme solarized
