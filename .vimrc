@@ -41,6 +41,8 @@ set hidden
 syntax enable
 syntax on
 
+" 2 space tabbing for puppet"
+autocmd FileType puppet,pp shiftwidth=2 tabstop=2 softtabstop=2
 "Git diff split..."
 autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
 
