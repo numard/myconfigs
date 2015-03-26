@@ -117,6 +117,9 @@ if v:version >= 730
     set undofile
 endif
 
+" Load vimrc after saving it
+autocmd! BufWritePost vimrc nested :source ~/.vimrc
+
 "Git diff split..."
 autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
 
@@ -238,5 +241,4 @@ set sidescroll=1
 
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
-set t_Co=256
 "colorscheme solarized
