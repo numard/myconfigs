@@ -39,7 +39,7 @@ Plugin 'godlygeek/tabular'
 " Color scheme...may need to tweak colors on iterm too...
 Plugin 'altercation/vim-colors-solarized'
 " Enough said...
-Plugin 'Lokaltog/powerline'
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'kien/ctrlp.vim'
 " Add support for .editorconfig files
 Plugin 'editorconfig/editorconfig-vim'
@@ -82,6 +82,19 @@ set hidden
 syntax enable
 syntax on
 
+" ================ powerline settings ================
+set laststatus=2    " Always display the statusline in all windows
+set showtabline=2   " Always display the tabline, even if there is only one tab
+set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set encoding=utf-8 " Necessary to show Unicode glyphs
+let g:Powerline_symbols = 'fancy'
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+set fillchars+=stl:\ ,stlnc:\
+" These are not *just* related to powerline, but needed by it too
+set encoding=utf-8
+set term=xterm-256color
+set t_Co=256
+set termencoding=utf-8
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
@@ -120,7 +133,6 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 " Highlight tabs and trailing spaces
 autocmd BufNewFile,BufRead text,python,ruby,php setl tw=80 ts=4 sts=4 sw=4 et list listchars=tab:>.,trail:-
 
-" B
 " 2 space tabbing for puppet"
 autocmd FileType puppet setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
 
@@ -203,18 +215,18 @@ set nofoldenable        "dont fold by default
 
 " ================ Completion =======================
 
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
+" set wildmode=list:longest
+" set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+" set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+" set wildignore+=*vim/backups*
+" set wildignore+=*sass-cache*
+" set wildignore+=*DS_Store*
+" set wildignore+=vendor/rails/**
+" set wildignore+=vendor/cache/**
+" set wildignore+=*.gem
+" set wildignore+=log/**
+" set wildignore+=tmp/**
+" set wildignore+=*.png,*.jpg,*.gif
 
 "
 
@@ -223,7 +235,6 @@ set wildignore+=*.png,*.jpg,*.gif
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-
 
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
