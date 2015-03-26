@@ -1,23 +1,64 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+"
+" Keep Plugin commands between vundle#begin/end.
+" see https://github.com/gmarik/Vundle.vim for Plugin syntax examples...
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+"
+" fugitive - git plugin
+Plugin 'tpope/vim-fugitive'
+Plugin 'plasticboy/vim-markdown'
+" Undo tree
+Plugin 'sjl/gundo.vim'
+" Syntax checker
+Plugin 'scrooloose/syntastic'
+" Autocompleter
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'rodjek/vim-puppet'
+Plugin 'honza/vim-snippets'
+Plugin 'godlygeek/tabular'
+" Color scheme...may need to tweak colors on iterm too...
+Plugin 'altercation/vim-colors-solarized'
+" Enough said...
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'kien/ctrlp.vim'
+" Add support for .editorconfig files
+Plugin 'editorconfig/editorconfig-vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Put your non-Plugin stuff after this line
+" --- /from https://github.com/gmarik/Vundle.vim
+
+" It is intended to allow overriding <Leader>.
 " source ~/.vimrc.before if it exists.
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
 
-execute pathogen#infect()
-
-" FIXME probably this 
-" =============== Pathogen Initialization ===============
-" This loads all the plugins in ~/.vim/bundle
-" Use tpope's pathogen plugin to manage all other plugins
-
-"  runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
-"  call pathogen#infect()
-"  call pathogen#helptags()
 
 " ================ General Config ====================
 
@@ -41,56 +82,19 @@ set hidden
 syntax enable
 syntax on
 
-" 2 space tabbing for puppet"
-autocmd FileType puppet,pp shiftwidth=2 tabstop=2 softtabstop=2
-"Git diff split..."
-autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
-
-" http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-" Highlight tabs and trailing spaces
-autocmd BufNewFile,BufRead * set tw=80 ts=4 sts=4 sw=4 et list listchars=tab:>.,trail:-
-
-" Highlight lines that are too long
-autocmd BufNewFile,BufRead * match Error /\%>80v.\+/
-
-" This will make CTRL+L toggle line numbers on/off and CTRL+P toggle paste mode on/off
-function! g:ToggleNuMode()
-    if(&nu == 1)
-        set nonu
-    else
-        set nu
-    endif
-endfunc
-
-function! g:TogglePasteMode()
-    if(&paste == 1)
-        set nopaste
-    else
-        set paste
-    endif
-endfunc
-
-nnoremap <C-L> :call g:ToggleNuMode()<cr>
-nnoremap <C-P> :call g:TogglePasteMode()<cr>
-" =====================================================
-
-" NO LUCK w/my colours? Highlight ending spces...but not highlighting each space you type 
-"  at the end of the line, only when you open a file or leave insert mode.
-"highlight ExtraWhitespace ctermbg=red guibg=red
-"au ColorScheme * highlight ExtraWhitespace guibg=red
-"au BufEnter * match ExtraWhitespace /\s\+$/
-"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-"au InsertLeave * match ExtraWhiteSpace /\s\+$/
-
+" ================ powerline settings ================
+set laststatus=2    " Always display the statusline in all windows
+set showtabline=2   " Always display the tabline, even if there is only one tab
+set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set encoding=utf-8 " Necessary to show Unicode glyphs
+let g:Powerline_symbols = 'fancy'
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+set fillchars+=stl:\ ,stlnc:\
+" These are not *just* related to powerline, but needed by it too
+set encoding=utf-8
+set term=xterm-256color
+set t_Co=256
+set termencoding=utf-8
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
@@ -112,6 +116,62 @@ if v:version >= 730
     set undodir=~/.vim/backups
     set undofile
 endif
+
+" Load vimrc after saving it
+autocmd! BufWritePost vimrc nested :source ~/.vimrc
+
+"Git diff split..."
+autocmd FileType gitcommit DiffGitCached | wincmd L | wincmd p
+
+" http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" Highlight tabs and trailing spaces
+autocmd BufNewFile,BufRead text,python,ruby,php setl tw=80 ts=4 sts=4 sw=4 et list listchars=tab:>.,trail:-
+
+" 2 space tabbing for puppet"
+autocmd FileType puppet setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
+
+" Highlight lines that are too long
+autocmd BufNewFile,BufRead * match Error /\%>80v.\+/
+
+" =====================================================
+" This will make CTRL+L toggle line numbers on/off and CTRL+I (because CtrlP is the autocomplete...) toggle paste mode on/off
+function! g:ToggleNuMode()
+    if(&nu == 1)
+        set nonu
+    else
+        set nu
+    endif
+endfunc
+
+function! g:TogglePasteMode()
+    if(&paste == 1)
+        set nopaste
+    else
+        set paste
+    endif
+endfunc
+
+nnoremap <C-L> :call g:ToggleNuMode()<cr>
+nnoremap <C-I> :call g:TogglePasteMode()<cr>
+" =====================================================
+
+" =====================================================
+" NO LUCK w/my colours? Highlight ending spces...but not highlighting each space you type 
+"  at the end of the line, only when you open a file or leave insert mode.
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"au ColorScheme * highlight ExtraWhitespace guibg=red
+"au BufEnter * match ExtraWhitespace /\s\+$/
+"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 " ================ Indentation ======================
 
@@ -158,18 +218,18 @@ set nofoldenable        "dont fold by default
 
 " ================ Completion =======================
 
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
+" set wildmode=list:longest
+" set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+" set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+" set wildignore+=*vim/backups*
+" set wildignore+=*sass-cache*
+" set wildignore+=*DS_Store*
+" set wildignore+=vendor/rails/**
+" set wildignore+=vendor/cache/**
+" set wildignore+=*.gem
+" set wildignore+=log/**
+" set wildignore+=tmp/**
+" set wildignore+=*.png,*.jpg,*.gif
 
 "
 
@@ -179,8 +239,6 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
-set t_Co=256
 "colorscheme solarized

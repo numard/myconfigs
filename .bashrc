@@ -151,6 +151,12 @@ alias mcoprod="ssh au-ops001 mco"
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
+which vimpager >/dev/null
+if [ $? == 0 ] ; then
+    export PAGER=vimpager
+    alias less=$PAGER
+    alias zless=$PAGER
+fi
 
 if [ `which vimpager` != "" ] ; then 
     export PAGER=vimpager
