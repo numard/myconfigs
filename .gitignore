@@ -5,5 +5,10 @@ xmonad.o
 xmonad-x86_64-linux
 .vim/backups/*
 .vim/.netrwhist
+# .vim/bundle is now managed by Vundle.vim....
+# simply git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim/
+# and take it from there...
+.vim/bundle/*
+.vim/plugin/*
 backups/*
 .DS_Store
