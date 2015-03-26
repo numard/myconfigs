@@ -152,6 +152,12 @@ alias mcoprod="ssh au-ops001 mco"
 export EDITOR=vim
 export VISUAL=vim
 
+if [ `which vimpager` != "" ] ; then 
+    export PAGER=vimpager
+    alias less=$PAGER
+    alias zless=$PAGER
+fi
+
 # An alternative to making an alias...which doesn't support the use of parameters, so i can't add $1 before a &..which means the first use of e ties my screen to the process 
 e() {
     nohup scite $1 & 2>&1 >/dev/null

@@ -4,5 +4,6 @@ xmonad.hi
 xmonad.o
 xmonad-x86_64-linux
 .vim/backups/*
+.vim/.netrwhist
 backups/*
 .DS_Store
