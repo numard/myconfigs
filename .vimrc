@@ -9,6 +9,15 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+" To install on a new machine:
+"  1. copy this .vimrc
+"  2. mkdir -p ~/.vim/bundle
+"  3. cd ~/.vim/bundle
+"  4. git clone https://github.com/gmarik/Vundle.vim
+"  5. vim , :PluginInstall
+"  6. solve any dependencies errors ( press l after Vundle finishes to see its
+"  work log...
+"
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
