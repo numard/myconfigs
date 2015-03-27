@@ -35,20 +35,24 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive - git plugin
 Plugin 'tpope/vim-fugitive'
 Plugin 'plasticboy/vim-markdown'
-" Undo tree
-Plugin 'sjl/gundo.vim'
+if has("python")
+    " Undo tree
+    Plugin 'sjl/gundo.vim'
+    " Enough said...
+    Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+endif
 " Syntax checker
 Plugin 'scrooloose/syntastic'
 " Autocompleter
 Plugin 'davidhalter/jedi-vim'
-Plugin 'Shougo/neocomplete.vim'
+if has("lua")
+    Plugin 'Shougo/neocomplete.vim'
+endif
 Plugin 'rodjek/vim-puppet'
 Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 " Color scheme...may need to tweak colors on iterm too...
 Plugin 'altercation/vim-colors-solarized'
-" Enough said...
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'kien/ctrlp.vim'
 " Add support for .editorconfig files
 Plugin 'editorconfig/editorconfig-vim'
@@ -92,6 +96,8 @@ syntax enable
 syntax on
 
 " ================ powerline settings ================
+" Enabled even if powerline is not loaded as it shows a boring but still
+" useful status line.
 set laststatus=2    " Always display the statusline in all windows
 set showtabline=2   " Always display the tabline, even if there is only one tab
 set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -104,6 +110,23 @@ set encoding=utf-8
 set term=xterm-256color
 set t_Co=256
 set termencoding=utf-8
+
+" ===================== Gundo =====================
+" if exists('loaded_gundo')
+    nnoremap<C-A> :call gundo#GundoToggle()<cr>
+" endif
+
+" ================== Syntastic =====================
+" if exists('loaded_syntastic_plugin')
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+" endif 
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
