@@ -129,21 +129,20 @@ set t_Co=256
 set termencoding=utf-8
 
 " ===================== Gundo =====================
-" if exists('loaded_gundo')
-    nnoremap<C-A> :call gundo#GundoToggle()<cr>
-" endif
+nnoremap<F5> :call gundo#GundoToggle()<cr>
+
+" show diff below the original buffer
+let g:gundo_preview_bottom = 1
 
 " ================== Syntastic =====================
-" if exists('loaded_syntastic_plugin')
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-" endif 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
