@@ -40,11 +40,11 @@ if has("python")
     Plugin 'sjl/gundo.vim'
     " Enough said...
     Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    " Autocompleter
+    Plugin 'davidhalter/jedi-vim'
 endif
 " Syntax checker
 Plugin 'scrooloose/syntastic'
-" Autocompleter
-Plugin 'davidhalter/jedi-vim'
 if has("lua")
     Bundle 'Shougo/neocomplete.vim'
     Bundle 'Shougo/neosnippet'
@@ -257,8 +257,14 @@ endif
 " " Tell Neosnippet about the other snippets
 " let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-" ================ Search Settings  =================
+" ==================== Jedi-Vim =====================
+" Is Neo/NeoSnippets + vim-snippets + jedi-vim too much?
+" would it make sense to use jedi-vim in .py and neo elsewhere?
+let g:jedi#show_call_signatures = "1"
+" can't see the difference with this one 1 or 0
+" let g:jedi#use_tabs_not_buffers = "1"
 
+" ================ Search Settings  =================
 set incsearch        "Find the next match as we type the search
 set hlsearch         "Hilight searches by default
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
