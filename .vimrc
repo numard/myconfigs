@@ -303,6 +303,8 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 
 " Highlight tabs and trailing spaces
 autocmd BufNewFile,BufRead text,python,ruby,php setl tw=80 ts=4 sts=4 sw=4 et list listchars=tab:>.,trail:-
+" Another variant to remove last spaces on python
+" autocmd BufWritePre *.py :%s/\s\+$//e
 
 " 2 space tabbing for puppet"
 autocmd FileType puppet setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
@@ -330,6 +332,9 @@ endfunc
 
 nnoremap <C-L> :call g:ToggleNuMode()<cr>
 nnoremap <C-I> :call g:TogglePasteMode()<cr>
+
+" jj for save, rather than :wq
+noremap jj <Esc>:w<CR>
 " =====================================================
 
 " =====================================================
