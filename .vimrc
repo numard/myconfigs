@@ -414,4 +414,6 @@ set sidescroll=1
 
 " Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
-"colorscheme solarized
+"
+" Colors, specifically for the auto-complete menu
+highlight Pmenu ctermbg=253 gui=bold
