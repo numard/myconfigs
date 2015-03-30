@@ -1,0 +1,3 @@
+[pep8]
+show-source=true
+ignore=E501,E401
