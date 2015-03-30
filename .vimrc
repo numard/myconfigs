@@ -137,6 +137,9 @@ nnoremap<F5> :call gundo#GundoToggle()<cr>
 let g:gundo_preview_bottom = 1
 
 " ================== Syntastic =====================
+" FIXME should check with
+" if exists('g:loaded_syntastic_plugin')
+" FIXME are these necesary when powerline installed?
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -150,7 +153,7 @@ let g:syntastic_auto_loc_list=2
 
 " Mark syntasitc errors:
 let g:syntastic_enable_signs=1
-
+" endif
 " ================= NeoComplete =================
 " FIXME doesnt seemt to work just checking for a var...
 if has('lua')
