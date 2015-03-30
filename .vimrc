@@ -425,12 +425,12 @@ set nofoldenable        "dont fold by default
 
 " ================ Scrolling ========================
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=5         "Start scrolling when we're x lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-" Solarized colour scheme - installed as bundle under pathogen"
 set background=dark
-"
-" Colors, specifically for the auto-complete menu
+colorscheme peaksea
+
+" Colors for the auto-complete menu
 highlight Pmenu ctermbg=253 gui=bold
