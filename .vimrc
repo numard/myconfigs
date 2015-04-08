@@ -353,8 +353,8 @@ endfunc
 nnoremap <C-L> :call g:ToggleNuMode()<cr>
 nnoremap <C-I> :call g:TogglePasteMode()<cr>
 
-" jj for save, rather than :wq
-noremap jj <Esc>:w<CR>
+" \\ for save, rather than :wq
+noremap \\ <Esc>:w<CR>
 " =====================================================
 
 " =====================================================
