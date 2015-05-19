@@ -148,6 +148,8 @@ alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-
 
 alias mcoprod="ssh au-ops001 mco"
 
+alias Grep="grep"
+
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
