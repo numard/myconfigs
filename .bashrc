@@ -139,7 +139,11 @@ alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
 alias m1='mtr 10.32.140.20'
 
-alias bc3="bcompare"
+#if [ `uname` == 'Darwin' ] ; then
+#    alias bc3="open /Applications/Beyond\ Compare.app"
+#else
+#    alias bc3="bcompare"
+#fi
 
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
@@ -158,13 +162,12 @@ if [ $? == 0 ] ; then
     export PAGER=vimpager
     alias less=$PAGER
     alias zless=$PAGER
+else
+    export PAGER=/usr/bin/less
 fi
+# original less
+alias oless=/usr/bin/less
 
-if [ `which vimpager` != "" ] ; then 
-    export PAGER=vimpager
-    alias less=$PAGER
-    alias zless=$PAGER
-fi
 
 # An alternative to making an alias...which doesn't support the use of parameters, so i can't add $1 before a &..which means the first use of e ties my screen to the process 
 e() {
