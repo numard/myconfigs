@@ -330,6 +330,9 @@ autocmd BufNewFile,BufRead text,python,ruby,php setl tw=80 ts=4 sts=4 sw=4 et li
 " 2 space tabbing for puppet"
 autocmd FileType puppet setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
 
+" Makefiles and their love for tabs...
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
 " Highlight lines that are too long
 autocmd BufNewFile,BufRead * match Error /\%>80v.\+/
 
