@@ -337,3 +337,9 @@ colorscheme peaksea
 
 " Colors for the auto-complete menu
 highlight Pmenu ctermbg=253 gui=bold
+
+" === searching ===
+" use \\C to force case sensitve search, or use capitals to auto-switch to
+" case sensitive
+set ignorecase
+set smartcase
