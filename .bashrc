@@ -51,7 +51,7 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
-PATH=/opt/local/bin:/opt/local/sbin/:$PATH
+PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 PATH=$PATH:$HOME/.jenv/bin
 
 export PATH
@@ -137,7 +137,7 @@ alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
-alias m1='mtr 10.32.140.20'
+alias m1='mtr 10.32.140.203'
 
 #if [ `uname` == 'Darwin' ] ; then
 #    alias bc3="open /Applications/Beyond\ Compare.app"
@@ -153,6 +153,8 @@ alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-
 alias mcoprod="ssh au-ops001 mco"
 
 alias Grep="grep"
+
+alias cloudme="source ~/dev/cloud/init_cloud.sh"
 
 # useful for git and others
 export EDITOR=vim
@@ -244,3 +246,5 @@ eval "$(jenv init -)"
 
 PERL_MB_OPT="--install_base \"/Users/nmeijome/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
+export CLOUD_GIT_DIR=/Users/nmeijome/git/cloud
+
