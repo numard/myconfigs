@@ -58,7 +58,7 @@ export PATH
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -205,6 +205,7 @@ if [ -e ~/.git-prompt.sh ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=true
     export GIT_PS1_SHOWUNTRACKEDFILES=true
     export GIT_PS1_SHOWSTASHSTATE=true
+ #   export GIT_PS1_SHOWCOLORHINTS=true
     source ~/.git-prompt.sh
 fi
 
@@ -221,6 +222,38 @@ ec2() {
     
     cd $CWD
     
+}
+
+# helper to setup openstack env
+function cloudme () {
+	if [ "$1" == "esprod" ] ; then
+		RC="${HOME}/dev/cloud/au-es-openrc.sh"
+	elif [ "$1" == "dev" ] ; then
+		RC="${HOME}/dev/cloud/dev-nmeijome-openrc.sh"
+	else
+		echo "BRRRR : [esprod | dev]"
+		RC="FAIL"
+	fi
+
+	if [ "$RC" != "FAIL" ] ; then
+		source ${HOME}/dev/v_cloud/bin/activate
+		source ${RC}
+
+		echo "LOADED ${OS_TENANT_NAME}"
+	fi
+}
+
+# Add to PS1 the openstack Tenant ID
+function __get_OS_tenant () {
+    if [ "${OS_TENANT_NAME}" != "" ] ; then
+        echo "{${OS_TENANT_NAME}}"
+    fi
+}
+
+## OSX only :)
+function get_ldappw () {
+  output=$(security 2>&1 >/dev/null find-generic-password -ga ecg-ldap)
+  echo $output | sed 's/password: "\(.*\)"/\1/' 2>/dev/null
 }
 
 export PROMPT_COMMAND='history -a'
@@ -240,7 +273,17 @@ export PROMPT_COMMAND='history -a'
 #PS1="\[\033[01;34m\]\D{%Y-%m-%d} \t :: ${debian_chroot:+($debian_chroot)}\u@\h\n[\w] \$ :\[\033[00m\]"
 #PS1="\[\033[01;34m\]${debian_chroot:+($debian_chroot)}\u@\h :: \D{%Y-%m-%d} \t \n[\w] \$:\[\033[00m\]"
 #PS1="\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]\[\033[00m\]\[\e[1;\$(get_git_color)m\] \$(parse_git_branch)\[\e[0m\]\[\033[01;34m\]::\[\033[00m\] "
-PS1='\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]$( __git_ps1 ) :: \[\033[00m\]'
+# my favourite for a long time...but uses up 2 lines and pretty wide
+#PS1='\[\033[01;34m\]\u@\h :: \D{%Y-%m-%d} \t \n[\w]$( __git_ps1 ) :: \[\033[00m\]'
+
+# the default, faster than my previous favourite
+# with added cloud env showing
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$( __git_ps1 )$( __get_OS_tenant )\$ '
+
+# only on bash 4+
+# shortens \w to
+# nmeijome@LM-SYD-00321353:~/.../modules/au (master %)
+export PROMPT_DIRTRIM=2
 
 eval "$(jenv init -)"
 
