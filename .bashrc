@@ -43,6 +43,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Terraform in my tools dir
+PATH="$PATH:$HOME/tools/terraform"
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -138,6 +140,7 @@ alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
 alias m1='mtr 10.32.140.203'
+alias mq='mtr 10.40.19.252'
 
 #if [ `uname` == 'Darwin' ] ; then
 #    alias bc3="open /Applications/Beyond\ Compare.app"
