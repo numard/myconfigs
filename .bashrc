@@ -154,19 +154,17 @@ alias mcoprod="ssh au-ops001 mco"
 
 alias Grep="grep"
 
-alias cloudme="source ~/dev/cloud/init_cloud.sh"
-
 # useful for git and others
 export EDITOR=vim
 export VISUAL=vim
-which vimpager >/dev/null
-if [ $? == 0 ] ; then
-    export PAGER=vimpager
-    alias less=$PAGER
-    alias zless=$PAGER
-else
+#which vimpager >/dev/null
+#if [ $? == 0 ] ; then
+#    export PAGER=vimpager
+#    alias less=$PAGER
+#    alias zless=$PAGER
+#else
     export PAGER=/usr/bin/less
-fi
+#fi
 # original less
 alias oless=/usr/bin/less
 
