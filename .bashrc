@@ -53,7 +53,7 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
-PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
 PATH=$PATH:$HOME/.jenv/bin
 
 export PATH
