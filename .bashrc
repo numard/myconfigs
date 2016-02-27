@@ -54,7 +54,6 @@ case "$TERM" in
 esac
 
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
-PATH=$PATH:$HOME/.jenv/bin
 
 export PATH
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -286,7 +285,11 @@ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\
 # nmeijome@LM-SYD-00321353:~/.../modules/au (master %)
 export PROMPT_DIRTRIM=2
 
-eval "$(jenv init -)"
+PATH=$PATH:$HOME/.jenv/bin
+which jenv > /dev/null
+if [ "$?" == 0 ] ; then
+    eval "$(jenv init -)"
+fi
 
 PERL_MB_OPT="--install_base \"/Users/nmeijome/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
