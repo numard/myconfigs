@@ -44,7 +44,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # Terraform in my tools dir
-PATH="$PATH:$HOME/tools/terraform"
+PATH="$PATH:$HOME/tools/"
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -54,6 +54,8 @@ case "$TERM" in
 esac
 
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
+# pip execs for current python
+PATH="/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH"
 
 export PATH
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -72,21 +74,21 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#    ;;
+#*)
+#    ;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -130,7 +132,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Handy aliases
-alias g="/usr/bin/gitg &"
 alias awscli='source ~/dev/venv_awscli/bin/activate; complete -C aws_completer aws'
 alias json='python -mjson.tool'
 alias acb='acpitool -B|head -n 2|tail -n 1'
@@ -151,6 +152,7 @@ alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias hpr='hub pull-request'
 
 alias mcoprod="ssh au-ops001 mco"
 
@@ -205,7 +207,7 @@ if [ -e ~/.git-prompt.sh ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=true
     export GIT_PS1_SHOWUNTRACKEDFILES=true
     export GIT_PS1_SHOWSTASHSTATE=true
- #   export GIT_PS1_SHOWCOLORHINTS=true
+   # export GIT_PS1_SHOWCOLORHINTS=true
     source ~/.git-prompt.sh
 fi
 
@@ -226,27 +228,31 @@ ec2() {
 
 # helper to setup openstack env
 function cloudme () {
-	if [ "$1" == "esprod" ] ; then
-		RC="${HOME}/dev/cloud/au-es-openrc.sh"
-	elif [ "$1" == "dev" ] ; then
-		RC="${HOME}/dev/cloud/dev-nmeijome-openrc.sh"
-	else
-		echo "BRRRR : [esprod | dev]"
-		RC="FAIL"
-	fi
-
-	if [ "$RC" != "FAIL" ] ; then
-		source ${HOME}/dev/v_cloud/bin/activate
+    # called as 
+    # cloudme ams1 au-prod
+    # cloudme dus1 au-ci
+    # cloudme ams1 au-ops-qa
+    # cloudme dev nmeijome
+    RC="${HOME}/dev/cloud/${1}/${2}-openrc.sh"
+    VENV=v_nova
+    
+    if [ -f "${RC}" ] ; then
+		source ${HOME}/dev/${VENV}/bin/activate
 		source ${RC}
-
+        export OS_REGION=${1}
 		echo "LOADED ${OS_TENANT_NAME}"
+
+    else
+        echo "BRRRR : Cannot find tenant $2 in region $1 ( $RC )"
+        echo "Syntax: cloudme {ams1|dus1|dev} {tenant_name}"
 	fi
+
 }
 
 # Add to PS1 the openstack Tenant ID
 function __get_OS_tenant () {
     if [ "${OS_TENANT_NAME}" != "" ] ; then
-        echo "{${OS_TENANT_NAME}}"
+        echo "{${OS_TENANT_NAME}-${OS_REGION}}"
     fi
 }
 
@@ -278,7 +284,8 @@ export PROMPT_COMMAND='history -a'
 
 # the default, faster than my previous favourite
 # with added cloud env showing
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$( __git_ps1 )$( __get_OS_tenant )\$ '
+# with shorter info about username,hostname in prompt (but no changes on term title)
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]${USER:0:2}@...\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$( __git_ps1 )$( __get_OS_tenant )\$ '
 
 # only on bash 4+
 # shortens \w to
@@ -295,3 +302,4 @@ PERL_MB_OPT="--install_base \"/Users/nmeijome/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
 export CLOUD_GIT_DIR=/Users/nmeijome/git/cloud
 
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
