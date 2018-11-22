@@ -223,8 +223,9 @@ autocmd BufNewFile,BufRead text,python,ruby,php setl tw=80 ts=4 sts=4 sw=4 et li
 " Another variant to remove last spaces on python
 " autocmd BufWritePre *.py :%s/\s\+$//e
 
-" 2 space tabbing for puppet"
+" 2 space tabbing for puppet and yaml"
 autocmd FileType puppet setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
+autocmd FileType yaml setl sw=2 ts=2 sts=2 et list listchars=tab:>.,trail:-
 
 " Makefiles and their love for tabs...
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
