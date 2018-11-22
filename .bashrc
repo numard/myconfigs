@@ -56,6 +56,8 @@ esac
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
 # pip execs for current python
 PATH="/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH"
+# local user python bin.. f f s 
+PATH="$PATH:/Users/nmeijome/Library/Python/2.7/bin"
 
 export PATH
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -140,7 +142,8 @@ alias wi='wicd-curses'
 alias wicd='wicd-curses'
 alias m8='mtr 8.8.8.8'
 alias m1='mtr 10.32.140.203'
-alias mq='mtr 10.40.19.252'
+alias mq='mtr www.cloud.qa1.gumtree.com.au'
+alias mqa1='mtr webapp001.qa1.au-qa.ams1.cloud'
 
 #if [ `uname` == 'Darwin' ] ; then
 #    alias bc3="open /Applications/Beyond\ Compare.app"
@@ -152,6 +155,7 @@ alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request'
 
 alias mcoprod="ssh au-ops001 mco"
