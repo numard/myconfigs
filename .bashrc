@@ -53,13 +53,10 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
-# pip execs for current python
-PATH="/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH"
-# local user python bin.. f f s 
-PATH="$PATH:/Users/nmeijome/Library/Python/2.7/bin"
+PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
 
 export PATH
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -122,15 +119,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
 
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-  . /opt/local/etc/profile.d/bash_completion.sh
+if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+. /usr/local/share/bash-completion/bash_completion
 fi
 
 # Handy aliases
