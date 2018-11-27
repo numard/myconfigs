@@ -296,12 +296,6 @@ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]${USER
 # nmeijome@LM-SYD-00321353:~/.../modules/au (master %)
 export PROMPT_DIRTRIM=2
 
-PATH=$PATH:$HOME/.jenv/bin
-which jenv > /dev/null
-if [ "$?" == 0 ] ; then
-    eval "$(jenv init -)"
-fi
-
 PERL_MB_OPT="--install_base \"/Users/nmeijome/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
 export CLOUD_GIT_DIR=/Users/nmeijome/git/cloud
