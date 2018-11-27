@@ -131,10 +131,10 @@ alias acb='acpitool -B|head -n 2|tail -n 1'
 alias acs='sync; sync; /usr/bin/xscreensaver-command -lock;  sudo acpitool -s'
 alias wi='wicd-curses'
 alias wicd='wicd-curses'
-alias m8='mtr 8.8.8.8'
-alias m1='mtr 10.32.140.203'
-alias mq='mtr www.cloud.qa1.gumtree.com.au'
-alias mqa1='mtr webapp001.qa1.au-qa.ams1.cloud'
+alias m8='sudo mtr 8.8.8.8'
+alias m1='sudo mtr 10.32.140.203'
+alias mq='sudo mtr www.cloud.qa1.gumtree.com.au'
+alias mqa1='sudo mtr webapp001.qa1.au-qa.ams1.cloud'
 
 #if [ `uname` == 'Darwin' ] ; then
 #    alias bc3="open /Applications/Beyond\ Compare.app"
@@ -142,14 +142,18 @@ alias mqa1='mtr webapp001.qa1.au-qa.ams1.cloud'
 #    alias bc3="bcompare"
 #fi
 
+eval "$(hub alias -s)"
+
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
+alias gcb='git checkout -b'
+alias gc='git checkout'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request'
 
-alias mcoprod="ssh au-ops001 mco"
+alias cdp='cd ~/dev/puppet/'
 
 alias Grep="grep"
 
