@@ -149,7 +149,7 @@ alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gcb='git checkout -b'
 alias gc='git checkout'
-alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset %Cgreen(%ci)%Creset%  - %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request'
 
