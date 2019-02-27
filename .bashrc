@@ -261,6 +261,24 @@ function get_ldappw () {
   echo $output | sed 's/password: "\(.*\)"/\1/' 2>/dev/null
 }
 
+## Get ssl cert from HTTPS endpoint
+function show_cert () {
+
+    if [ "${1}" == "" ] ; then
+        echo show_cert \{fqdn\} \{port:443\}
+        return
+    fi
+
+    if [ "${2}" == "" ] ; then
+        _PORT=443
+    else
+        _PORT=${2}
+    fi
+
+    echo | openssl s_client -showcerts -servername $1 -connect $1:${_PORT} 2>/dev/null | openssl x509 -inform pem -noout -text
+
+}
+
 export PROMPT_COMMAND='history -a'
 
 # Guide to prompt:
