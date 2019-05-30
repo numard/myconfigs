@@ -15,6 +15,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
 HISTFILESIZE=200000
+HISTTIMEFORMAT="%d/%m/%y %T "
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -144,11 +145,15 @@ alias mqa1='sudo mtr webapp001.qa1.au-qa.ams1.cloud'
 
 eval "$(hub alias -s)"
 
+alias pc="pre-commit"
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gcb='git checkout -b'
 alias gc='git checkout'
+alias gs='git status'
+alias gw='git whatchanged'
+## gri - is a function
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset %Cgreen(%ci)%Creset%  - %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request'
@@ -277,6 +282,17 @@ function show_cert () {
 
     echo | openssl s_client -showcerts -servername $1 -connect $1:${_PORT} 2>/dev/null | openssl x509 -inform pem -noout -text
 
+}
+
+# replacing alias so i can handle parameters. Alias for git rebase -i HEAD~<number of commits to go back>
+function gri () {
+    if [ "${1}" == "" ] ; then
+        echo "Alias to 'git rebase -i HEAD~\$1'"
+        echo gri \{number_of_commits_from_HEAD\}
+        return
+    fi
+
+    git rebase -i HEAD~$1
 }
 
 export PROMPT_COMMAND='history -a'
