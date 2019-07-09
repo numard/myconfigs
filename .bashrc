@@ -59,6 +59,7 @@ case "$TERM" in
     rxvt) color_prompt=yes;;
 esac
 
+
 PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
 
 export PATH
@@ -154,6 +155,7 @@ alias pc="pre-commit"
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
+alias gderp='git commit -m derp'
 alias gcb='git checkout -b'
 alias gc='git checkout'
 alias gs='git status'
