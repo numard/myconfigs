@@ -38,6 +38,11 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# OSX support for /etc/paths.d/*
+if [ -x /usr/libexec/path_helper ]; then
+        eval `/usr/libexec/path_helper -s`
+fi
+
 # User specific aliases and functions
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
