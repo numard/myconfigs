@@ -43,15 +43,6 @@ if [ -x /usr/libexec/path_helper ]; then
         eval `/usr/libexec/path_helper -s`
 fi
 
-# User specific aliases and functions
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# Terraform in my tools dir
-PATH="$PATH:$HOME/tools/"
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -61,6 +52,15 @@ esac
 
 
 PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
+
+# User specific aliases and functions
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Terraform in my tools dir
+PATH="$PATH:$HOME/tools/"
 
 export PATH
 
