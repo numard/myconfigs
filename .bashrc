@@ -126,11 +126,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-
-if [ -f /usr/local/share/bash-completion/bash_completion ]; then
-. /usr/local/share/bash-completion/bash_completion
-fi
-
 # Handy aliases
 alias awscli='source ~/dev/venv_awscli/bin/activate; complete -C aws_completer aws'
 alias json='python -mjson.tool'
@@ -337,3 +332,15 @@ PERL_MM_OPT="INSTALL_BASE=/Users/nmeijome/perl5"; export PERL_MM_OPT;
 export CLOUD_GIT_DIR=/Users/nmeijome/git/cloud
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+## BEWARE - we are changing default OSX commands for GNU
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+eval "$(pipenv --completion)"
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+eval "$(direnv hook bash)"
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+complete -C /usr/local/bin/vault vault
