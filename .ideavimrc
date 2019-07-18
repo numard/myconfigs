@@ -1,0 +1,28 @@
+" ================ Search Settings  =================
+set incsearch        "Find the next match as we type the search
+set hlsearch         "Hilight searches by default
+set viminfo='100,f1  "Save up to 100 marks, enable capital marks
+
+" use \\C to force case sensitve search, or use capitals to auto-switch to
+" case sensitive
+set ignorecase
+set smartcase
+
+" ================ Key remapping ====================
+
+" \\ for save, rather than :wq
+noremap \\ <Esc>:w<CR>
+
+set timeoutlen=500
+
+nore ; :
+nore , ;
+
+" reselect after line indent..."
+vnoremap < <gv
+vnoremap > >gv
+
+" improve movement wrapped lines"
+" nnoremap j gj
+" nnoremap k gk
+
