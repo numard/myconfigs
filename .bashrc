@@ -151,7 +151,7 @@ alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gderp='git commit -m derp'
-alias gcb='git checkout -b'
+# gcb - is a function
 alias gc='git checkout'
 alias gs='git status'
 alias gw='git whatchanged'
@@ -159,7 +159,7 @@ alias gw='git whatchanged'
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset %Cgreen(%ci)%Creset%  - %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request'
-
+alias gback='git branch $(git rev-parse --abbrev-ref HEAD)-BACK-$(date +%Y%m%d-%H%M)'
 alias cdp='cd ~/dev/puppet/'
 
 alias Grep="grep"
@@ -246,6 +246,8 @@ function cloudme () {
 		source ${HOME}/dev/${VENV}/bin/activate
 		source ${RC}
         export OS_REGION=${1}
+        export AVI_USERNAME="${OS_USERNAME}"
+        export AVI_PASSWORD="${OS_PASSWORD}"
 		echo "LOADED ${OS_TENANT_NAME}"
 
     else
@@ -297,6 +299,13 @@ function gri () {
     git rebase -i HEAD~$1
 }
 
+function gcb () {
+    git checkout -b ${1}
+#     if [ $? ] ; then
+#         git branch --set-upstream-to=origin/${1}
+#     fi
+}
+
 export PROMPT_COMMAND='history -a'
 
 # Guide to prompt:
@@ -335,6 +344,9 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 ## BEWARE - we are changing default OSX commands for GNU
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -344,3 +356,5 @@ eval "$(direnv hook bash)"
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 complete -C /usr/local/bin/vault vault
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
