@@ -157,8 +157,13 @@ alias gs='git status'
 alias gw='git whatchanged'
 ## gri - is a function
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset %Cgreen(%ci)%Creset%  - %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+# git tree
+alias gt="git log --all --graph --decorate --oneline"
+# git tree tags only
+alias gtt="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
+
 ## alias hpr='hub pull-request -b moratorium'
-alias hpr='hub pull-request'
+alias hpr='hub pull-request --draft'
 alias gback='git branch $(git rev-parse --abbrev-ref HEAD)-BACK-$(date +%Y%m%d-%H%M)'
 alias cdp='cd ~/dev/puppet/'
 
