@@ -12,3 +12,4 @@ xmonad-x86_64-linux
 .vim/plugin/*
 backups/*
 .DS_Store
+*.swp
