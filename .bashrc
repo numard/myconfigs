@@ -137,6 +137,13 @@ alias m8='sudo mtr 8.8.8.8'
 alias m1='sudo mtr 10.32.140.203'
 alias mq='sudo mtr www.cloud.qa1.gumtree.com.au'
 alias mqa1='sudo mtr webapp001.qa1.au-qa.ams1.cloud'
+alias k='kubectl'
+alias i='istioctl'
+alias dkc='docker compose'
+alias dke='docker exec'
+alias dki='docker image'
+alias dkp='docker ps'
+alias dkr='docker run'
 
 #if [ `uname` == 'Darwin' ] ; then
 #    alias bc3="open /Applications/Beyond\ Compare.app"
@@ -155,6 +162,7 @@ alias gderp='git commit -m derp'
 alias gc='git checkout'
 alias gs='git status'
 alias gw='git whatchanged'
+alias gr='git rebase'
 ## gri - is a function
 alias gl="/usr/bin/git log --date-order --graph --pretty=format:'%Cred%h%Creset %Cgreen(%ci)%Creset%  - %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 # git tree
@@ -166,6 +174,8 @@ alias gtt="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
 alias hpr='hub pull-request --draft'
 alias gback='git branch $(git rev-parse --abbrev-ref HEAD)-BACK-$(date +%Y%m%d-%H%M)'
 alias cdp='cd ~/dev/puppet/'
+alias cdi='cd ~/dev/infrastructure/'
+alias agn="ag --nonumbers"
 
 alias Grep="grep"
 
@@ -279,8 +289,10 @@ function get_ldappw () {
 function show_cert () {
 
     if [ "${1}" == "" ] ; then
-        echo show_cert \{fqdn\} \{port:443\}
+        echo show_cert \{SNI\} \{port:443\} \{connect_to:defaults_to_SNI\}
         return
+    else
+        _SNI=${1}
     fi
 
     if [ "${2}" == "" ] ; then
@@ -289,7 +301,15 @@ function show_cert () {
         _PORT=${2}
     fi
 
-    echo | openssl s_client -showcerts -servername $1 -connect $1:${_PORT} 2>/dev/null | openssl x509 -inform pem -noout -text
+    if [ "${3}" == "" ] ; then
+        _CONNECT=${_SNI}
+    else
+        _CONNECT=${3}
+    fi
+
+
+
+    echo | openssl s_client -showcerts -servername ${_SNI} -connect ${_CONNECT}:${_PORT} 2>/dev/null | openssl x509 -inform pem -noout -text
 
 }
 
@@ -357,9 +377,33 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 eval "$(pipenv --completion)"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-eval "$(direnv hook bash)"
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 complete -C /usr/local/bin/vault vault
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+# Keep after all other lines that modify prompt
+
+eval "$(direnv hook bash)"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+KUBE_PS1_NS_ENABLE=true
+KUBE_PS1_PREFIX='('
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_SYMBOL_DEFAULT='*'
+KUBE_PS1_SYMBOL_USE_IMG=flase
+KUBE_PS1_SEPARATOR='|'
+KUBE_PS1_DIVIDER=':'
+KUBE_PS1_SUFFIX=')'
+
+function get_cluster_short() {
+  env=$(echo $1 | cut -d _ -f2 | cut -d - -f3)
+  cluster=$(echo $1 | cut -d _ -f4)
+  [[ "${env}" != "" ]] && echo "${env}-${cluster}" || echo "${cluster}"
+}
+
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+[[ -f ~/.bashrc ]] && . ~/.bashrc
