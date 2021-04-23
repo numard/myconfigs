@@ -5,7 +5,11 @@ export EDITOR=vim
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+# Terraform in my tools dir
+export PATH="$PATH:$HOME/tools/"
+
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
@@ -14,7 +18,6 @@ if type brew &>/dev/null; then
 fi
 
 eval "$(pipenv --completion)"
-
 
 ## Prompt setup
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
@@ -210,7 +213,7 @@ function show_cert () {
 
 # replacing alias so i can handle parameters. Alias for git rebase -i HEAD~<number of commits to go back>
 function gri () {
-    if [ "${1}" == "" ] ; then
+    if [ "${1}" -eq  "" ] ; then
         echo "Alias to 'git rebase -i HEAD~\$1'"
         echo gri \{number_of_commits_from_HEAD\}
         return
