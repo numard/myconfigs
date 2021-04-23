@@ -4,6 +4,7 @@ export EDITOR=vim
 ## BEWARE - we are changing default OSX commands for GNU
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -127,8 +128,8 @@ alias gtt="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
 ## alias hpr='hub pull-request -b moratorium'
 alias hpr='hub pull-request --draft'
 alias gback='git branch $(git rev-parse --abbrev-ref HEAD)-BACK-$(date +%Y%m%d-%H%M)'
-alias cdp='cd ~/dev/puppet/'
-alias cdi='cd ~/dev/infrastructure/'
+alias cdp='cd ~/gt_dev/puppet/'
+alias cdi='cd ~/gt_dev/infrastructure/'
 alias agn="ag --nonumbers"
 
 alias Grep="grep"
@@ -140,11 +141,11 @@ function cloudme () {
     # cloudme dus1 au-ci
     # cloudme ams1 au-ops-qa
     # cloudme dev nmeijome
-    RC="${HOME}/dev/cloud/${1}/${2}-openrc.sh"
+    RC="${HOME}/gt_dev/cloud/${1}/${2}-openrc.sh"
     VENV=v_nova
 
     if [ -f "${RC}" ] ; then
-                source ${HOME}/dev/${VENV}/bin/activate
+                source ${HOME}/gt_dev/${VENV}/bin/activate
                 source ${RC}
         export OS_REGION=${1}
         export AVI_USERNAME="${OS_USERNAME}"
