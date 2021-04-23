@@ -20,7 +20,7 @@ if [ -e ~/.git-prompt.sh ] ; then
     export GIT_PS1_SHOWDIRTYSTATE=true
     export GIT_PS1_SHOWUNTRACKEDFILES=true
     export GIT_PS1_SHOWSTASHSTATE=true
-   # export GIT_PS1_SHOWCOLORHINTS=true
+#    export GIT_PS1_SHOWCOLORHINTS=true
     source ~/.git-prompt.sh
 fi
 
@@ -32,7 +32,7 @@ fi
 # (⎈ |gke_gumtree-au-prod_australia-southeast1_apps-syd-02:prod-mysql)nmeijome@LM-SYD-15001919 ~ % echo $PS1
 # $(kube_ps1)%n@%m %1~ %#
 
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]${USER:0:2}@...\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$( __git_ps1 )$( __get_OS_tenant )\$ '
+PS1='$( __git_ps1 )$( __get_OS_tenant ) $( __short_username_machine ) %3~ %# '
 
 
 # Keep after all other lines that modify prompt
@@ -161,6 +161,11 @@ function __get_OS_tenant () {
     if [ "${OS_TENANT_NAME}" != "" ] ; then
         echo "{${OS_TENANT_NAME}-${OS_REGION}}"
     fi
+}
+
+function __short_username_machine () {
+    H=$(uname -n)
+    echo $USER[1,2]@$H[1,4]..$H[-4,-1]
 }
 
 ## OSX only :)
