@@ -94,6 +94,9 @@ setopt NO_CASE_GLOB
 # setopt GLOB_COMPLETE
 setopt AUTO_CD
 
+# BEWARE, this alias to python fucks up venvs - add this line back in <venv>/bin/activate to its deactivate function
+# and unalias python to its activate/main func
+alias python='python3'
 alias json='python -mjson.tool'
 alias m8='sudo mtr 8.8.8.8'
 alias m1='sudo mtr 10.32.140.203'
