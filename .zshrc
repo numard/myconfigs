@@ -1,5 +1,6 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export EDITOR=vim
 ## BEWARE - we are changing default OSX commands for GNU
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
@@ -84,7 +85,8 @@ setopt HIST_REDUCE_BLANKS
 # verify commands from history rather than exec right away
 setopt HIST_VERIFY
 
-bindkey -v
+# force emacs bindkeys for the line editor (somewhat more standard than vim mode...)
+bindkey -e
 unsetopt beep
 setopt NO_CASE_GLOB
 # revert to bash autocomplete behaviour
