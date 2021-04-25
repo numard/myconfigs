@@ -6,7 +6,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # Terraform in my tools dir
-export PATH="$PATH:$HOME/tools/"
+export PATH="$PATH:$HOME/tools/:$HOME/bin"
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
