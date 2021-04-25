@@ -163,7 +163,10 @@ function cloudme () {
     else
         echo "BRRRR : Cannot find tenant $2 in region $1 ( $RC )"
         echo "Syntax: cloudme {ams1|dus1|dev} {tenant_name}"
-        fi
+    fi
+
+    # remove variables we dont want anymore
+    unset ST_AUTH_VERSION
 
 }
 
