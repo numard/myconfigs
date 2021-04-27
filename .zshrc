@@ -39,11 +39,10 @@ fi
 # (⎈ |gke_gumtree-au-prod_australia-southeast1_apps-syd-02:prod-mysql)nmeijome@LM-SYD-15001919 ~ % echo $PS1
 # $(kube_ps1)%n@%m %1~ %#
 
-PS1='$( __git_ps1 )$( __get_OS_tenant ) $( __short_username_machine ) %3~ %# '
+PS1='$(kube_ps1)$( __get_OS_tenant ) $( __short_username_machine ) %3~ $( __git_ps1 ) %# '
 
 
 # Keep after all other lines that modify prompt
-PS1='$(kube_ps1)'$PS1
 KUBE_PS1_NS_ENABLE=true
 KUBE_PS1_PREFIX='('
 KUBE_PS1_SYMBOL_ENABLE=false
