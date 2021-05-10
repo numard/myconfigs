@@ -89,6 +89,8 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 # verify commands from history rather than exec right away
 setopt HIST_VERIFY
+# dont add to history commands starting with space 
+setopt HIST_IGNORE_SPACE
 
 # force emacs bindkeys for the line editor (somewhat more standard than vim mode...)
 bindkey -e
