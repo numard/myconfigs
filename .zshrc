@@ -11,6 +11,7 @@ export PATH="$PATH:$HOME/tools/:$HOME/bin"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export GROOVY_HOME=/usr/local/opt/groovysdk/libexec
 
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
