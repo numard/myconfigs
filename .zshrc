@@ -5,6 +5,8 @@ export EDITOR=vim
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+# Using openjdk from brew
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 # Terraform in my tools dir
 export PATH="$PATH:$HOME/tools/:$HOME/bin"
 
