@@ -7,6 +7,8 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # Using openjdk from brew
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+# newer version of ruby, because wtf OSX
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 # Terraform in my tools dir
 export PATH="$PATH:$HOME/tools/:$HOME/bin"
 
@@ -23,6 +25,9 @@ if type brew &>/dev/null; then
 fi
 
 eval "$(pipenv --completion)"
+
+# Enable rbenv on changing dir
+eval "$(rbenv init -)"
 
 ## Prompt setup
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
@@ -75,8 +80,8 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 # History config
 HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=6000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt EXTENDED_HISTORY
 # share history across multiple zsh sessions
 setopt SHARE_HISTORY
