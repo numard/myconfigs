@@ -1,85 +1,89 @@
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export EDITOR=vim
-## BEWARE - we are changing default OSX commands for GNU
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-# Using openjdk from brew
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-# newer version of ruby, because wtf OSX
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-# Terraform in my tools dir
-export PATH="$PATH:$HOME/tools/:$HOME/bin"
-
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export GROOVY_HOME=/usr/local/opt/groovysdk/libexec
-
-if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-	autoload -Uz compinit
-	compinit
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-eval "$(pipenv --completion)"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Enable rbenv on changing dir
-eval "$(rbenv init -)"
+# Path to your oh-my-zsh installation.
+ZSH=/usr/share/oh-my-zsh/
 
-## Prompt setup
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-if [ -e ~/.git-prompt.sh ] ; then
-    export GIT_PS1_SHOWDIRTYSTATE=true
-    export GIT_PS1_SHOWUNTRACKEDFILES=true
-    export GIT_PS1_SHOWSTASHSTATE=true
-#    export GIT_PS1_SHOWCOLORHINTS=true
-    source ~/.git-prompt.sh
-fi
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="candy "
+# see source for powerlevel10k.theme below
 
-# the default, faster than my previous favourite
-# with added cloud env showing
-# with shorter info about username,hostname in prompt (but no changes on term title)
-#
-# long but working zsh
-# (⎈ |gke_gumtree-au-prod_australia-southeast1_apps-syd-02:prod-mysql)nmeijome@LM-SYD-15001919 ~ % echo $PS1
-# $(kube_ps1)%n@%m %1~ %#
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-PS1='$(kube_ps1)$( __get_OS_tenant ) $( __short_username_machine ) %3~ $( __git_ps1 ) %# '
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
 
-# Keep after all other lines that modify prompt
-KUBE_PS1_NS_ENABLE=true
-KUBE_PS1_PREFIX='('
-KUBE_PS1_SYMBOL_ENABLE=false
-KUBE_PS1_SYMBOL_DEFAULT='*'
-KUBE_PS1_SYMBOL_USE_IMG=flase
-KUBE_PS1_SEPARATOR='|'
-KUBE_PS1_DIVIDER=':'
-KUBE_PS1_SUFFIX=')'
+source $ZSH/oh-my-zsh.sh
 
-function get_cluster_short() {
-  env=$(echo $1 | cut -d _ -f2 | cut -d - -f3)
-  cluster=$(echo $1 | cut -d _ -f4)
-  [[ "${env}" != "" ]] && echo "${env}-${cluster}" || echo "${cluster}"
-}
-
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-
-# Autocomplete
-zstyle :compinstall filename '/Users/nmeijome/.zshrc'
-eval "$(direnv hook zsh)"
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-complete -o nospace -C /usr/local/bin/vault vault
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# ZSH User configuration
 # History config
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt EXTENDED_HISTORY
@@ -107,32 +111,30 @@ setopt NO_CASE_GLOB
 # revert to bash autocomplete behaviour
 # setopt GLOB_COMPLETE
 setopt AUTO_CD
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR=vim
 
-# BEWARE, this alias to python fucks up venvs - add this line back in <venv>/bin/activate to its deactivate function
-# and unalias python to its activate/main func
-alias python='python3'
-alias json='python -mjson.tool'
-alias m8='sudo mtr 8.8.8.8'
-alias m1='sudo mtr 10.32.140.203'
-alias mq='sudo mtr www.cloud.qa1.gumtree.com.au'
-alias mqa1='sudo mtr webapp001.qa1.au-qa.ams1.cloud'
-alias k='kubectl'
-alias i='istioctl'
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+
+alias ls="ls --color=never"
+alias m8="sudo mtr 8.8.8.8"
 alias dkc='docker compose'
 alias dke='docker exec'
 alias dki='docker image'
 alias dkp='docker ps'
 alias dkr='docker run'
-eval "$(hub alias -s)"
 
+# Many other git specific aliases added by oh-my-zsh
 alias pc="pre-commit"
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase; git log ORIG_HEAD..'
 alias gca='git commit --amend'
 alias gderp='git commit -m derp'
-# gcb - is a function
-alias gc='git checkout'
-alias gs='git status'
 alias gw='git whatchanged'
 alias gr='git rebase'
 ## gri - is a function
@@ -142,60 +144,14 @@ alias gt="git log --all --graph --decorate --oneline"
 # git tree tags only
 alias gtt="git log --graph --simplify-by-decoration --pretty=format:'%d' --all"
 
-## alias hpr='hub pull-request -b moratorium'
-alias hpr='hub pull-request --draft'
 alias gback='git branch $(git rev-parse --abbrev-ref HEAD)-BACK-$(date +%Y%m%d-%H%M)'
-alias cdp='cd ~/gt_dev/puppet/'
-alias cdi='cd ~/gt_dev/infrastructure/'
 alias agn="ag --nonumbers"
 
 alias Grep="grep"
-
-# helper to setup openstack env
-function cloudme () {
-    # called as
-    # cloudme ams1 au-prod
-    # cloudme dus1 au-ci
-    # cloudme ams1 au-ops-qa
-    # cloudme dev nmeijome
-    RC="${HOME}/gt_dev/cloud/${1}/${2}-openrc.sh"
-    VENV=v_nova
-
-    if [ -f "${RC}" ] ; then
-                source ${HOME}/gt_dev/${VENV}/bin/activate
-                source ${RC}
-        export OS_REGION=${1}
-        export AVI_USERNAME="${OS_USERNAME}"
-        export AVI_PASSWORD="${OS_PASSWORD}"
-                echo "LOADED ${OS_TENANT_NAME}"
-
-    else
-        echo "BRRRR : Cannot find tenant $2 in region $1 ( $RC )"
-        echo "Syntax: cloudme {ams1|dus1|dev} {tenant_name}"
-    fi
-
-    # remove variables we dont want anymore
-    unset ST_AUTH_VERSION
-
-}
-
-# Add to PS1 the openstack Tenant ID
-function __get_OS_tenant () {
-    if [ "${OS_TENANT_NAME}" != "" ] ; then
-        echo "{${OS_TENANT_NAME}-${OS_REGION}}"
-    fi
-}
-
-function __short_username_machine () {
-    H=$(uname -n)
-    echo $USER[1,2]@$H[1,4]..$H[-4,-1]
-}
-
-## OSX only :)
-function get_ldappw () {
-  output=$(security 2>&1 >/dev/null find-generic-password -ga ecg-ldap)
-  echo $output | sed 's/password: "\(.*\)"/\1/' 2>/dev/null
-}
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
 
 ## Get ssl cert from HTTPS endpoint
 function show_cert () {
@@ -245,3 +201,8 @@ function gcb () {
 
 
 
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
